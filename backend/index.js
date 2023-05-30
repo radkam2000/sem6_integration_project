@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const https = require("https");
 app.get("/", (req, res) => {
 	res.send("Aplikacja dziala");
 });
@@ -29,7 +28,7 @@ const getStockData = () => {
 				]);
 			});
 			stockDataAfterParsing = tmpObservations;
-			console.log(stockDataAfterParsing[0]);
+			console.log(stockDataAfterParsing);
 		});
 };
 
@@ -51,7 +50,7 @@ const getCryptoData = () => {
 					tmpDate.getDate();
 			});
 			cryptoDataAfterParsing = json.prices;
-			console.log(cryptoDataAfterParsing[0]);
+			console.log(cryptoDataAfterParsing);
 		});
 };
 
