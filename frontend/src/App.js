@@ -37,30 +37,31 @@ function App() {
 	const [chartData, setChartData] = useState({});
 	const [chartData2, setChartData2] = useState({});
 	const groupData = () => {
-		setSize(Object.values(cryptoData).length);
-		for (var i = 0; i < 10; i++) {
-			dates.push(cryptoData[i][0]);
-			prices.push(cryptoData[i][1]);
-		}
-		setChartData({
-			labels: dates,
-			datasets: [
-				{
-					label: "Crypto prices",
-					data: prices,
-					backgroundColor: ["#9c92ac"],
-					borderColor: "#c5c5c5",
-					borderWidth: 2,
-					hoverBackgroundColor: "#ff9a00",
-				},
-			],
-		});
+		// setSize(Object.values(cryptoData).length);
+		// for (var i = 0; i < size; i += 365) {
+		// 	dates.push(cryptoData[i][0]);
+		// 	prices.push(cryptoData[i][1]);
+		// }
+		// setChartData({
+		// 	labels: dates,
+		// 	datasets: [
+		// 		{
+		// 			label: "Crypto prices",
+		// 			data: prices,
+		// 			backgroundColor: ["#9c92ac"],
+		// 			borderColor: "#c5c5c5",
+		// 			borderWidth: 2,
+		// 			hoverBackgroundColor: "#ff9a00",
+		// 		},
+		// 	],
+		// });
+		modifyChartData(cryptoData, 365, "Crypto prices");
 		dates = [];
 		prices = [];
 		setSize(Object.values(stockData).length);
-		for (var j = 0; j < 10; j++) {
-			dates.push(stockData[i][0]);
-			prices.push(stockData[i][1]);
+		for (var j = 0; j < size; j += 365) {
+			dates.push(stockData[j][0]);
+			prices.push(stockData[j][1]);
 		}
 		setChartData2({
 			labels: dates,
@@ -76,7 +77,83 @@ function App() {
 			],
 		});
 		setButtonClicked(true);
+		// chartDataFromYear(stockData, "2020", "Stock data");
+		chartDataFromYearAndMonth(stockData, "2019", "04", "Stock data");
 	};
+	function modifyChartData(data, divider, label) {
+		dates = [];
+		prices = [];
+		setSize(Object.values(data).length);
+		for (var i = 0; i < size; i += divider) {
+			dates.push(data[i][0]);
+			prices.push(data[i][1]);
+		}
+		setChartData({
+			labels: dates,
+			datasets: [
+				{
+					label: label,
+					data: prices,
+					backgroundColor: ["#f5b1aa"],
+					borderColor: "#c5c5c5",
+					borderWidth: 2,
+					hoverBackgroundColor: "#ff9a00",
+				},
+			],
+		});
+	}
+	function chartDataFromYear(data, year, label) {
+		dates = [];
+		prices = [];
+		setSize(Object.values(data).length);
+		var splited = "";
+		for (var i = 0; i < size; i++) {
+			splited = data[i][0].split("-");
+			if (splited[0] === year) {
+				dates.push(data[i][0]);
+				prices.push(data[i][1]);
+			}
+		}
+		setChartData2({
+			labels: dates,
+			datasets: [
+				{
+					label: label + " - " + year,
+					data: prices,
+					backgroundColor: ["#f5b1aa"],
+					borderColor: "#c5c5c5",
+					borderWidth: 2,
+					hoverBackgroundColor: "#ff9a00",
+				},
+			],
+		});
+	}
+	function chartDataFromYearAndMonth(data, year, month, label) {
+		dates = [];
+		prices = [];
+		setSize(Object.values(data).length);
+		var splited = "";
+		for (var i = 0; i < size; i++) {
+			splited = data[i][0].split("-");
+			if (splited[0] === year && splited[1] === month) {
+				dates.push(data[i][0]);
+				prices.push(data[i][1]);
+			}
+		}
+		setChartData2({
+			labels: dates,
+			datasets: [
+				{
+					label: label + " - " + year,
+					data: prices,
+					backgroundColor: ["#f5b1aa"],
+					borderColor: "#c5c5c5",
+					borderWidth: 2,
+					hoverBackgroundColor: "#ff9a00",
+				},
+			],
+		});
+	}
 	return (
 		<div className="App">
 			<h1>Frontend</h1>
@@ -87,13 +164,17 @@ function App() {
 			<p>
 				<h4>Wykresy kryptowaluty</h4>
 				{pobrano && isButtonClicked ? (
-					<LineChart chartData={chartData} />
+					<div style={{ width: 800 }}>
+						<LineChart chartData={chartData} />
+					</div>
 				) : (
 					""
 				)}
 				{pobrano ? (
 					isButtonClicked ? (
-						<BarChart chartData={chartData} />
+						<div style={{ width: 800 }}>
+							<BarChart chartData={chartData} />
+						</div>
 					) : (
 						"nie kliknięto"
 					)
@@ -105,13 +186,17 @@ function App() {
 			<p>
 				<h4>Wykresy giełda</h4>
 				{pobrano && isButtonClicked ? (
-					<LineChart chartData={chartData2} />
+					<div style={{ width: 800 }}>
+						<LineChart chartData={chartData2} />
+					</div>
 				) : (
 					""
 				)}
 				{pobrano ? (
 					isButtonClicked ? (
-						<BarChart chartData={chartData2} />
+						<div style={{ width: 800 }}>
+							<BarChart chartData={chartData2} />
+						</div>
 					) : (
 						"nie kliknięto"
 					)
