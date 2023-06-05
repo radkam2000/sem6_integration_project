@@ -1,5 +1,6 @@
 const router = require("express").Router();
 require("dotenv").config();
+const jwt_auth = require("../middleware/jwt_auth");
 
 const cryptoParser = require("../parsers/cryptoDataParser");
 const stockParser = require("../parsers/stockDataParser");
@@ -32,9 +33,14 @@ router.get("/", async (req, res) => {
 	try {
 		const stock = await getStockData();
 		const crypto = await getCryptoData();
-		res.status(200).send({ stock: stock, crypto: crypto });
+		res.status(200).send({
+			stock: stock,
+			crypto: crypto,
+			message: "Data fetched successfully",
+		});
 	} catch (error) {
 		console.error(error);
+		res.status(500).send({ message: "Internal Server Error" });
 	}
 });
 
