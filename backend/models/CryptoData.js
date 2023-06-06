@@ -3,7 +3,7 @@ const Joi = require("joi");
 
 const priceWithDate = new mongoose.Schema({
 	date: { type: Date },
-	price: { type: Float },
+	price: { type: Number },
 });
 
 const cryptoDataSchema = new mongoose.Schema({
@@ -18,13 +18,14 @@ const validateCryptoData = (data) => {
 		cryptoName: Joi.string().required().label("Crypto name"),
 		prices: Joi.array()
 			.items(
-				Joi.object.keys({
-					date: Joi.Date(),
-					price: Joi.Number(),
+				Joi.object({
+					date: Joi.date(),
+					price: Joi.number(),
 				})
 			)
 			.label("Prices"),
 	});
+	return schema.validate(data);
 };
 
 module.exports = { CryptoData, validateCryptoData };

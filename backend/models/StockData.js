@@ -3,7 +3,7 @@ const Joi = require("joi");
 
 const priceWithDate = new mongoose.Schema({
 	date: { type: Date },
-	price: { type: Float },
+	price: { type: Number },
 });
 
 const stockDataSchema = new mongoose.Schema({
@@ -19,12 +19,13 @@ const validateStockData = (data) => {
 		prices: Joi.array()
 			.items(
 				Joi.object.keys({
-					date: Joi.Date(),
-					price: Joi.Number(),
+					date: Joi.date(),
+					price: Joi.number(),
 				})
 			)
 			.label("Prices"),
 	});
+	return schema.validate(data);
 };
 
 module.exports = { StockData, validateStockData };
