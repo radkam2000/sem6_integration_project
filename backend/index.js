@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const dataApiRouter = require("./routes/dataFromApi");
+const dataDbRouter = require("./routes/dataFromDB");
 const userRouter = require("./routes/user");
 const authUser = require("./routes/auth");
 const cors = require("cors");
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/data_api", dataApiRouter);
+app.use("/api/data_db", dataDbRouter);
 app.use("/api/user", userRouter);
 app.use("/api/auth", authUser);
 

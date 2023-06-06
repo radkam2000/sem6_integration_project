@@ -26,7 +26,6 @@ router.delete("/", jwt_auth, (req, res) => {
 		.exec()
 		.then(async () => {
 			const user = await User.findOne({ _id: req.user._id });
-			const salt = await bcrypt.genSalt(Number(process.env.SALT));
 
 			const isValid = await bcrypt.compare(
 				req.body.Password,

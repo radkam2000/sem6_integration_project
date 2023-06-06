@@ -1,9 +1,17 @@
-POST http://localhost:5000/api/user/register
+POST http://localhost:5000/api/data_db/crypto/addNewData
 Content-Type: application/json
 
 {
-    "firstName": "asdfff",
-    "lastName": "asdfff",
-    "email": "example@com.com",
-    "password": "Qwerty1234!"
+    "crypto":{
+    "cryptoName": "Bitcoin",
+    "prices":[
+      {"date":"2013-04-29","price":2866.95},
+      {"date":"2014-04-29","price":3866.95},
+      {"date":"2015-04-29","price":4866.95}
+    ]
+    }
 }
+
+###
+
+GET http://localhost:5000/api/data_db/crypto/Bitcoin
