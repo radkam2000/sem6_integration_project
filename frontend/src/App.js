@@ -47,7 +47,6 @@ function App() {
 	var pricesS = [];
 	const [size, setSize] = useState(0);
 	const chartDataDivider = () => {
-		setShowCharts(true);
 		dates = [];
 		pricesC = [];
 		pricesS = [];
@@ -58,6 +57,7 @@ function App() {
 		}
 		setSize(Object.values(stockData).length);
 		for (var j = 0; j < size; j += 365) {
+			if (stockData[j][1] === null) stockData[j][1] = stockData[j - 1][1];
 			pricesS.push(stockData[j][1]);
 		}
 		setChartData({
@@ -66,7 +66,6 @@ function App() {
 				{
 					label: "Kryptowaluty",
 					data: pricesC,
-					backgroundColor: ["#f5b1aa"],
 					borderColor: "#ff0000",
 					borderWidth: 2,
 					pointRadius: 0,
@@ -75,7 +74,6 @@ function App() {
 				{
 					label: "Giełda",
 					data: pricesS,
-					backgroundColor: ["#f5b1aa"],
 					borderColor: "blue",
 					borderWidth: 2,
 					pointRadius: 0,
@@ -83,6 +81,7 @@ function App() {
 				},
 			],
 		});
+		setShowCharts(true);
 	};
 
 	const [buttonM, setButtonM] = useState(false);
@@ -102,9 +101,12 @@ function App() {
 		}
 		setSize(Object.values(stockData).length);
 		for (var j = 0; j < size; j++) {
+			if (stockData[j][1] === null) stockData[j][1] = stockData[j - 1][1];
 			splited = stockData[j][0].split("-");
-			if (splited[0] === "2019" && splited[1] === "06")
+			if (splited[0] === "2019" && splited[1] === "06") {
 				pricesS.push(stockData[j][1]);
+				console.log(stockData[j][1]);
+			}
 		}
 		setChartData2({
 			labels: dates,
@@ -112,7 +114,6 @@ function App() {
 				{
 					label: "Kryptowaluty",
 					data: pricesC,
-					backgroundColor: ["#f5b1aa"],
 					borderColor: "#ff0000",
 					borderWidth: 2,
 					pointRadius: 0,
@@ -121,7 +122,6 @@ function App() {
 				{
 					label: "Giełda",
 					data: pricesS,
-					backgroundColor: ["#f5b1aa"],
 					borderColor: "blue",
 					borderWidth: 2,
 					pointRadius: 0,
