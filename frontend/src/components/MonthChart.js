@@ -33,7 +33,7 @@ const MonthChart = (props) => {
 			}
 		}
 		setSize(Object.values(stock).length);
-		for (var j = 0; j < size; j += divider) {
+		for (var j = 0; j < size; j++) {
 			splited = stock[j][0].split("-");
 			if (splited[0] === year && splited[1] === month)
 				pricesS.push(stock[j][1]);
@@ -75,3 +75,4 @@ const MonthChart = (props) => {
 		</>
 	);
 };
+export default MonthChart;

@@ -67,27 +67,75 @@ function App() {
 					label: "Kryptowaluty",
 					data: pricesC,
 					backgroundColor: ["#f5b1aa"],
-					borderColor: "#c5c5c5",
+					borderColor: "#ff0000",
 					borderWidth: 2,
+					pointRadius: 0,
 					hoverBackgroundColor: "#ff9a00",
 				},
 				{
 					label: "Giełda",
 					data: pricesS,
 					backgroundColor: ["#f5b1aa"],
-					borderColor: "#c5c5c5",
+					borderColor: "blue",
 					borderWidth: 2,
+					pointRadius: 0,
 					hoverBackgroundColor: "#ff9a00",
 				},
 			],
 		});
 	};
 
+	const [buttonM, setButtonM] = useState(false);
+	const [chartData2, setChartData2] = useState({});
+	var splited = "";
+	const showM = () => {
+		dates = [];
+		pricesC = [];
+		pricesS = [];
+		setSize(Object.values(cryptoData).length);
+		for (var i = 0; i < size; i++) {
+			splited = cryptoData[i][0].split("-");
+			if (splited[0] === "2019" && splited[1] === "06") {
+				dates.push(cryptoData[i][0]);
+				pricesC.push(cryptoData[i][1]);
+			}
+		}
+		setSize(Object.values(stockData).length);
+		for (var j = 0; j < size; j++) {
+			splited = stockData[j][0].split("-");
+			if (splited[0] === "2019" && splited[1] === "06")
+				pricesS.push(stockData[j][1]);
+		}
+		setChartData2({
+			labels: dates,
+			datasets: [
+				{
+					label: "Kryptowaluty",
+					data: pricesC,
+					backgroundColor: ["#f5b1aa"],
+					borderColor: "#ff0000",
+					borderWidth: 2,
+					pointRadius: 0,
+					hoverBackgroundColor: "#ff9a00",
+				},
+				{
+					label: "Giełda",
+					data: pricesS,
+					backgroundColor: ["#f5b1aa"],
+					borderColor: "blue",
+					borderWidth: 2,
+					pointRadius: 0,
+					hoverBackgroundColor: "#ff9a00",
+				},
+			],
+		});
+		setButtonM(true);
+	};
 	return (
 		<div className="App">
 			<button onClick={handleGetData}>Pobierz dane</button>
 			pobrano: {pobrano ? "tak" : "nie"}
-			<p></p>
+			<br />
 			<button onClick={chartDataDivider}>Pokaż wykresy</button>
 			{pobrano && showCharts ? (
 				<div>
@@ -99,6 +147,8 @@ function App() {
 			) : (
 				"Nie pobrano danych"
 			)}
+			<button onClick={showM}>Pokaz</button>
+			{pobrano && buttonM ? <LineChart chartData={chartData2} /> : ""}
 		</div>
 	);
 }
