@@ -24,4 +24,16 @@ Content-Type:  application/json
 }
 ###
 
-GET http://localhost:5000/api/data_db/crypto/Bitcoin
+GET http://localhost:5000/api/data_api
+
+###
+
+POST http://localhost:5000/api/user/register
+Content-Type:  application/json
+
+{
+  "firstName": "abec",
+  "lastName": "asldkfj",
+  "email":"exampleeee@com.com",
+  "password": "Qwerty1234!"
+}
