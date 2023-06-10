@@ -1,5 +1,6 @@
 import { useState } from "react";
 import LineChart from "./LineChart";
+import styles from "./styles.module.css";
 
 const DividedChart = (props) => {
 	const [chartData, setChartData] = useState({});
@@ -43,13 +44,19 @@ const DividedChart = (props) => {
 		});
 		return chartData;
 	}
+	const [but, setBut] = useState(false);
+	function doSth() {
+		chartDataDivider(props.crypto, props.stock, 365);
+		setBut(true);
+	}
 	return (
 		<>
 			<h1>Wykres roczny</h1>
-			<LineChart
-				chartData={chartDataDivider(props.crypto, props.stock, 365)}
-			/>
-			<p></p>
+			<button className={styles.optionStyle} onClick={doSth}>
+				Do
+			</button>
+			{but ? <LineChart chartData={chartData} /> : ""}
+			{/* <p></p>
 			<h1>Wykres kwartalny</h1>
 			<LineChart
 				chartData={chartDataDivider(props.crypto, props.stock, 90)}
@@ -64,7 +71,7 @@ const DividedChart = (props) => {
 			<LineChart
 				chartData={chartDataDivider(props.crypto, props.stock, 1)}
 			/>
-			<p></p>
+			<p></p> */}
 		</>
 	);
 };
