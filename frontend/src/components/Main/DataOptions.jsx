@@ -37,8 +37,8 @@ const DataOptions = (props) => {
 				setCryptoData(res.crypto.prices);
 				setStartDate(res.startDate);
 				setEndDate(res.endDate);
-				setCryptoRate(res.cryptoRate);
-				setStockRate(res.stockRate);
+				setCryptoRate(res.cryptoRate.toFixed(2) + "%");
+				setStockRate(res.stockRate.toFixed(2) + "%");
 				if (stockData !== [] && cryptoData !== []) setPobrano(true);
 			} catch (error) {
 				if (
@@ -108,8 +108,8 @@ const DataOptions = (props) => {
 				setCryptoData(res.crypto.prices);
 				setStartDate(res.startDate);
 				setEndDate(res.endDate);
-				setCryptoRate(res.cryptoRate);
-				setStockRate(res.stockRate);
+				setCryptoRate(res.cryptoRate.toFixed(2) + "%");
+				setStockRate(res.stockRate.toFixed(2) + "%");
 			} catch (error) {
 				if (
 					error.response &&
