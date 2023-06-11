@@ -7,7 +7,7 @@ const Names = (props) => {
 		<div className={styles.opt_container}>
 			<h4>Wybierz swoje waluty</h4>
 			<input
-				className={styles.inputStyle}
+				className={styles.inputStyle_white}
 				id="cryptoName"
 				placeholder="Nazwa kryptowaluty"
 				name="cryptoName"
@@ -15,7 +15,7 @@ const Names = (props) => {
 				onChange={(e) => setCryptoName(e.target.value)}
 			/>
 			<input
-				className={styles.inputStyle}
+				className={styles.inputStyle_white}
 				id="stockName"
 				placeholder="Nazwa indeksu"
 				name="stockName"

@@ -1,9 +1,10 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import Nav from "./Nav";
 import DataOptions from "./DataOptions";
 import ChartOptions from "./ChartOptions";
 import Names from "./Names";
 import CustomCharts from "./CustomCharts";
+import styles from "./styles.module.css";
 
 const Main = () => {
 	const [rate, setRate] = useState("0");
@@ -38,7 +39,7 @@ const Main = () => {
 	return (
 		<div className="App">
 			<Nav />
-			<div>
+			<div className={styles.content}>
 				<DataOptions
 					setStockData={setStockData}
 					setCryptoData={setCryptoData}
@@ -47,7 +48,7 @@ const Main = () => {
 					setPobrano={setPobrano}
 					chosenOptions={chosenOptions}
 				/>
-				<h2>Zakres czasowy</h2>
+				<h2 className={styles.margin}>Zakres czasowy</h2>
 				<ChartOptions
 					setStartDate={setStartDate}
 					setEndDate={setEndDate}

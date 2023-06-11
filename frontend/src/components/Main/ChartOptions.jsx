@@ -8,6 +8,7 @@ const ChartOptions = (props) => {
 			<div className={styles.opt_container}>
 				<label htmlFor="startDate">Od: </label>
 				<input
+					className={styles.date}
 					id="startDate"
 					type="date"
 					name="startDate"
@@ -17,6 +18,7 @@ const ChartOptions = (props) => {
 				/>
 				<label htmlFor="endDate">Do: </label>
 				<input
+					className={styles.date}
 					id="endDate"
 					type="date"
 					name="endDate"
@@ -28,6 +30,7 @@ const ChartOptions = (props) => {
 			<div className={styles.opt_container}>
 				<label htmlFor="investment">Zainwestowana kwota: </label>
 				<input
+					className={styles.inputStyle_white}
 					type="number"
 					name="investment"
 					id="investment"
