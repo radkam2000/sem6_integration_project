@@ -47,6 +47,8 @@ router.post("/xml", uploads.single("file"), async (req, res) => {
 				cryptoName: result.crypto.cryptoName,
 				prices: result.crypto,
 			},
+			startDate: result.crypto.prices[0][0],
+			endDate: result.crypto.prices[result.crypto.prices.length - 1][0],
 			message: "File received succesfully",
 		});
 	} catch (error) {
