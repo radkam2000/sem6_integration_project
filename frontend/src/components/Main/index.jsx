@@ -2,50 +2,64 @@ import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import LineChart from "./LineChart";
 import Nav from "./Nav";
+import DataOptions from "./DataOptions";
 import styles from "./styles.module.css";
 
 const Main = () => {
+	// const [totalRate, setTotalRate] = useState("0");
+	// const [averageRate, setAverageRate] = useState("0");
+	// function countAverageRateOfReturn(years, beginningValue, endValue) {
+	// 	return (endValue / beginningValue / (years - 1)) * 100 + "%";
+	// }
+	// function countTotalRateOfReturn(beginningValue, endValue) {
+	// 	return (endValue / (beginningValue - 1)) * 100 + "%";
+	// }
+
 	const [stockData, setStockData] = useState([]);
 	const [cryptoData, setCryptoData] = useState([]);
+	const [cryptoName, setCryptoName] = useState("");
+	const [stockName, setStockName] = useState("");
+	const [startDate, setStartDate] = useState("");
+	const [endDate, setEndDate] = useState("");
 	const [pobrano, setPobrano] = useState(false);
 	const [showCharts, setShowCharts] = useState(false);
-
-	const handleGetData = async () => {
-		try {
-			const config = {
-				method: "get",
-				url: "http://localhost:5000/api/general/getData",
-				headers: { "Content-Type": "application/json" },
-			};
-			const { data: res } = await axios(config);
-			setStockData(res.stock);
-			setCryptoData(res.crypto);
-			if (stockData !== [] && cryptoData !== []) setPobrano(true);
-		} catch (error) {
-			if (
-				error.response &&
-				error.response.status >= 400 &&
-				error.response.status <= 500
-			) {
-				window.location.reload();
-			}
-		}
-	};
-
-	const [totalRate, setTotalRate] = useState("0");
-	const [averageRate, setAverageRate] = useState("0");
-	function countAverageRateOfReturn(years, beginningValue, endValue) {
-		return (endValue / beginningValue / (years - 1)) * 100 + "%";
-	}
-	function countTotalRateOfReturn(beginningValue, endValue) {
-		return (endValue / (beginningValue - 1)) * 100 + "%";
-	}
 
 	const [chartData, setChartData] = useState({});
 	var dates = [];
 	var pricesC = [];
 	var pricesS = [];
 	const [size, setSize] = useState(0);
+
+	const [fileType, setFileType] = useState("xml");
+
+	const handleGetData = async () => {
+		const token = localStorage.getItem("token");
+		if (token) {
+			try {
+				const config = {
+					method: "get",
+					url: "http://localhost:5000/api/general/getData",
+					headers: {
+						"Content-Type": "application/json",
+						"x-access-token": token,
+					},
+				};
+				const { data: res } = await axios(config);
+				setStockData(res.stock);
+				setCryptoData(res.crypto);
+				if (stockData !== [] && cryptoData !== []) setPobrano(true);
+			} catch (error) {
+				if (
+					error.response &&
+					error.response.status >= 400 &&
+					error.response.status <= 500
+				) {
+					window.location.reload();
+				}
+			}
+		}
+	};
+
 	const chartDataDivider = () => {
 		dates = [];
 		pricesC = [];
@@ -151,42 +165,33 @@ const Main = () => {
 		});
 		setButtonM(true);
 	};
-	const [cryptoName, setCryptoName] = useState("");
-	const [stockName, setStockName] = useState("");
-	const sendNames = async (req, res) => {
-		try {
-			const data = { cryptoName: cryptoName, stockName: stockName };
-			const res = await axios.post("http://localhost:5000/api/", data);
-			console.log("Names sent successfully!", res.data);
-		} catch (error) {
-			console.error(error);
-		}
-	};
-	const [fileType, setFileType] = useState("xml");
 	const handleExport = async () => {
-		try {
-			const config = {
-				method: "get",
-				url: "http://localhost:5000/api/download/" + fileType,
-				responseType: "blob",
-			};
-			const res = await axios(config);
-			const url = window.URL.createObjectURL(new Blob([res.data]));
-			const link = document.createElement("a");
-			link.href = url;
-			link.setAttribute("download", "data." + fileType);
-			document.body.appendChild(link);
-			link.click();
-			document.body.removeChild(link);
-			window.URL.revokeObjectURL(url);
-			console.log("File exported successfully!", res);
-		} catch (error) {
-			if (
-				error.response &&
-				error.response.status >= 400 &&
-				error.response.status <= 500
-			) {
-				window.location.reload();
+		const token = localStorage.getItem("token");
+		if (token) {
+			try {
+				const config = {
+					method: "get",
+					url: "http://localhost:5000/api/download/" + fileType,
+					headers: { "x-access-token": token },
+					responseType: "blob",
+				};
+				const res = await axios(config);
+				const url = window.URL.createObjectURL(new Blob([res.data]));
+				const link = document.createElement("a");
+				link.href = url;
+				link.setAttribute("download", "data." + fileType);
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
+				window.URL.revokeObjectURL(url);
+			} catch (error) {
+				if (
+					error.response &&
+					error.response.status >= 400 &&
+					error.response.status <= 500
+				) {
+					window.location.reload();
+				}
 			}
 		}
 	};
@@ -195,24 +200,29 @@ const Main = () => {
 		inputFile.current.click();
 	};
 	const handleImport = async (file) => {
-		try {
-			const formData = new FormData();
-			formData.append("file", file);
-			const config = {
-				method: "post",
-				url: "http://localhost:5000/api/upload/" + fileType,
-				headers: { "Content-Type": "multipart/form-data" },
-				file: formData,
-			};
-			const res = await axios(config);
-			console.log("File uploaded successfully!", res.file);
-		} catch (error) {
-			if (
-				error.response &&
-				error.response.status >= 400 &&
-				error.response.status <= 500
-			) {
-				window.location.reload();
+		const token = localStorage.getItem("token");
+		if (token) {
+			try {
+				const formData = new FormData();
+				formData.append("file", file);
+				const config = {
+					method: "post",
+					url: "http://localhost:5000/api/upload/" + fileType,
+					headers: {
+						"Content-Type": "multipart/form-data",
+						"x-access-token": token,
+					},
+					data: formData,
+				};
+				const res = await axios(config);
+			} catch (error) {
+				if (
+					error.response &&
+					error.response.status >= 400 &&
+					error.response.status <= 500
+				) {
+					window.location.reload();
+				}
 			}
 		}
 	};
@@ -230,8 +240,6 @@ const Main = () => {
 		}
 	};
 	const saveToDB = async () => {};
-	const [startDate, setStartDate] = useState("");
-	const [endDate, setEndDate] = useState("");
 	return (
 		<div className="App">
 			<Nav />
@@ -288,6 +296,15 @@ const Main = () => {
 						</p>
 					</div>
 				</div>
+				{/* <DataOptions
+					handleGetData={handleGetData}
+					setFileType={setFileType}
+					handleFileChange={handleFileChange}
+					chooseFile={chooseFile}
+					handleExport={handleExport}
+					saveToDB={saveToDB}
+					inputFile={inputFile}
+				/> */}
 				<h2>Zakres czasowy</h2>
 				<div className={styles.opt}>
 					<div className={styles.opt_container}>
@@ -342,9 +359,7 @@ const Main = () => {
 						type="text"
 						onChange={(e) => setStockName(e.target.value)}
 					/>
-					<button className={styles.optionStyle} onClick={sendNames}>
-						Pokaż
-					</button>
+					<button className={styles.optionStyle}>Pokaż</button>
 				</div>
 				<br />
 				<br />

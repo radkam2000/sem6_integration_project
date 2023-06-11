@@ -1,4 +1,13 @@
-const DataOptions = (props) => {
+import styles from "./styles.module.css";
+const DataOptions = (
+	handleGetData,
+	setFileType,
+	handleFileChange,
+	chooseFile,
+	handleExport,
+	saveToDB,
+	inputFile
+) => {
 	return (
 		<div className={styles.options}>
 			<h2>Zarządzaj danymi</h2>
@@ -48,3 +57,4 @@ const DataOptions = (props) => {
 		</div>
 	);
 };
+export default DataOptions;
