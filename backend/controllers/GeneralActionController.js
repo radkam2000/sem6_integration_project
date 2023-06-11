@@ -2,9 +2,6 @@ const getCryptoData = require("../apis/cryptoApi");
 const getStockData = require("../apis/stockApi");
 
 const calculateReturnRate = (startValue, endValue) => {
-	if (startValue === 1) {
-		startValue = 0.0001;
-	}
 	return (endValue / startValue - 1) * 100;
 };
 
