@@ -37,8 +37,8 @@ const DataOptions = (props) => {
 				setCryptoData(res.crypto.prices);
 				setStartDate(res.startDate);
 				setEndDate(res.endDate);
-				setCryptoRate(res.cryptoRate.toFixed(2) + "%");
-				setStockRate(res.stockRate.toFixed(2) + "%");
+				setCryptoRate(res.cryptoRate.toFixed(2));
+				setStockRate(res.stockRate.toFixed(2));
 				if (stockData !== [] && cryptoData !== []) setPobrano(true);
 			} catch (error) {
 				if (
@@ -108,8 +108,8 @@ const DataOptions = (props) => {
 				setCryptoData(res.crypto.prices);
 				setStartDate(res.startDate);
 				setEndDate(res.endDate);
-				setCryptoRate(res.cryptoRate.toFixed(2) + "%");
-				setStockRate(res.stockRate.toFixed(2) + "%");
+				setCryptoRate(res.cryptoRate.toFixed(2));
+				setStockRate(res.stockRate.toFixed(2));
 			} catch (error) {
 				if (
 					error.response &&
@@ -134,7 +134,31 @@ const DataOptions = (props) => {
 			}
 		}
 	};
-	const saveToDB = async () => {};
+	const saveToDB = async () => {
+		const token = localStorage.getItem("token");
+		if (token) {
+			try {
+				const config = {
+					method: "post",
+					url: "http://localhost:5000/api/data_db/addNewData",
+					headers: {
+						"Content-Type": "application/json",
+						"x-access-token": token,
+					},
+					data: chosenOptions,
+				};
+				const res = await axios(config);
+			} catch (error) {
+				if (
+					error.response &&
+					error.response.status >= 400 &&
+					error.response.status <= 500
+				) {
+					window.location.reload();
+				}
+			}
+		}
+	};
 	return (
 		<div className={styles.options}>
 			<h2 className={styles.margin}>Zarządzaj danymi</h2>

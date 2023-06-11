@@ -25,6 +25,9 @@ const CustomCharts = (props) => {
 		setEndDate,
 		stockGain,
 		cryptoGain,
+		setCryptoGain,
+		setStockGain,
+		investment,
 	} = props;
 	const [chartData, setChartData] = useState({});
 	var dates = [];
@@ -89,10 +92,9 @@ const CustomCharts = (props) => {
 				setCryptoName(res.crypto.cryptoName.toUpperCase());
 				setStartDate(res.startDate);
 				setEndDate(res.endDate);
-				setCryptoRate(res.cryptoRate.toFixed(2) + "%");
-				setStockRate(res.stockRate.toFixed(2) + "%");
+				setCryptoRate(res.cryptoRate.toFixed(2));
+				setStockRate(res.stockRate.toFixed(2));
 				if (stockData !== [] && cryptoData !== []) setPobrano(true);
-				// defaultChart();
 			} catch (error) {
 				if (
 					error.response &&
@@ -110,12 +112,18 @@ const CustomCharts = (props) => {
 		};
 		loading();
 	}, [cryptoData, stockData]);
+	useEffect(() => {
+		setCryptoGain(
+			((investment * cryptoRate) / 100 - investment).toFixed(2)
+		);
+		setStockGain(((investment * stockRate) / 100 - investment).toFixed(2));
+	});
 	return (
 		<div>
 			<div className={styles.opt}>
 				<div className={styles.opt_container}>
 					<button
-						className={styles.optionStyle}
+						className={styles.optionStyle_large}
 						onClick={handleChart}
 					>
 						Pokaż
@@ -134,13 +142,15 @@ const CustomCharts = (props) => {
 				)}
 				<div className={styles.col}>
 					<div className={styles.col_content}>
-						<label htmlFor="stockGain">Zysk z akcji: </label>
+						<label htmlFor="stockGain">Zysk/strata z akcji: </label>
 						<div className={styles.inputStyle_white}>
 							{stockGain}
 						</div>
 					</div>
 					<div className={styles.col_content}>
-						<label htmlFor="cryptoGain">Zysk z kryptowaluty:</label>
+						<label htmlFor="cryptoGain">
+							Zysk/strata z kryptowaluty:
+						</label>
 						<div className={styles.inputStyle_white}>
 							{cryptoGain}
 						</div>
@@ -150,7 +160,7 @@ const CustomCharts = (props) => {
 							Stopa zwrotu dla akcji:{" "}
 						</label>
 						<div className={styles.inputStyle_white}>
-							{stockRate}
+							{stockRate + "%"}
 						</div>
 					</div>
 					<div className={styles.col_content}>
@@ -158,7 +168,7 @@ const CustomCharts = (props) => {
 							Stopa zwrotu dla kryptowaluty:
 						</label>
 						<div className={styles.inputStyle_white}>
-							{cryptoRate}
+							{cryptoRate + "%"}
 						</div>
 					</div>
 				</div>

@@ -86,7 +86,8 @@ h2 {
 .inputStyle_white::placeholder {
 	color: #1b1b1b;
 }
-.optionStyle {
+.optionStyle,
+.optionStyle_large {
 	padding: 8px 30px;
 	border-radius: 12px;
 	border: 0;
@@ -95,9 +96,13 @@ h2 {
 	font-weight: 700;
 	cursor: pointer;
 }
-.optionStyle:hover {
+.optionStyle:hover,
+.optionStyle_large:hover {
 	background-color: #e5e5e5;
 	color: #0066cc;
+}
+.optionStyle_large {
+	width: 175px;
 }
 label {
 	font-weight: 700;
@@ -112,7 +117,9 @@ label {
 	background: #e5e5e5;
 }
 .row {
+	padding: 0 15px;
 	display: flex;
+	justify-content: space-between;
 }
 .col {
 	display: flex;

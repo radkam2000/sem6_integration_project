@@ -15,7 +15,7 @@ function LineChart({ chartData }) {
 			},
 			title: {
 				display: true,
-				text: "Kryptowaluty a NASDAQ",
+				text: "Kryptowaluty a Giełda",
 				color: "white",
 			},
 		},
@@ -26,6 +26,11 @@ function LineChart({ chartData }) {
 				},
 			},
 			y: {
+				title: {
+					display: true,
+					text: "USD",
+					color: "white",
+				},
 				ticks: {
 					color: "white",
 				},

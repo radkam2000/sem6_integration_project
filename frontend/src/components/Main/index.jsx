@@ -25,7 +25,6 @@ const Main = () => {
 		cryptoName,
 		startDate,
 		endDate,
-		investment,
 	});
 	useEffect(() => {
 		setChosenOptions({
@@ -35,6 +34,22 @@ const Main = () => {
 			endDate,
 		});
 	}, [stockName, cryptoName, startDate, endDate]);
+
+	const setDataProps = {
+		setCryptoRate,
+		setStockRate,
+		setStockData,
+		setCryptoData,
+		setCryptoName,
+		setStockName,
+		setStartDate,
+		setEndDate,
+		setInvestment,
+		setPobrano,
+		setShowCharts,
+		setCryptoGain,
+		setStockGain,
+	};
 
 	return (
 		<div className="App">
@@ -90,6 +105,9 @@ const Main = () => {
 					setEndDate={setEndDate}
 					stockGain={stockGain}
 					cryptoGain={cryptoGain}
+					setCryptoGain={setCryptoGain}
+					setStockGain={setStockGain}
+					investment={investment}
 				/>
 			</div>
 		</div>

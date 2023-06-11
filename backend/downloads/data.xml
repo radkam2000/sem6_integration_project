@@ -1,685 +1,525 @@
 <?xml version='1.0'?>
 <data>
     <stock>
-        <stockName>NASDAQ100</stockName>
-        <prices>
-            <date>2023-03-08</date>
-            <price>12215.33</price>
-        </prices>
-        <prices>
-            <date>2023-03-09</date>
-            <price>11995.88</price>
-        </prices>
-        <prices>
-            <date>2023-03-10</date>
-            <price>11830.28</price>
-        </prices>
-        <prices>
-            <date>2023-03-11</date>
-            <price>11830.28</price>
-        </prices>
-        <prices>
-            <date>2023-03-12</date>
-            <price>11830.28</price>
-        </prices>
-        <prices>
-            <date>2023-03-13</date>
-            <price>11923.17</price>
-        </prices>
-        <prices>
-            <date>2023-03-14</date>
-            <price>12199.79</price>
-        </prices>
-        <prices>
-            <date>2023-03-15</date>
-            <price>12251.32</price>
-        </prices>
-        <prices>
-            <date>2023-03-16</date>
-            <price>12581.39</price>
-        </prices>
-        <prices>
-            <date>2023-03-17</date>
-            <price>12519.88</price>
-        </prices>
-        <prices>
-            <date>2023-03-18</date>
-            <price>12519.88</price>
-        </prices>
-        <prices>
-            <date>2023-03-19</date>
-            <price>12519.88</price>
-        </prices>
-        <prices>
-            <date>2023-03-20</date>
-            <price>12562.61</price>
-        </prices>
-        <prices>
-            <date>2023-03-21</date>
-            <price>12741.44</price>
-        </prices>
-        <prices>
-            <date>2023-03-22</date>
-            <price>12567.15</price>
-        </prices>
-        <prices>
-            <date>2023-03-23</date>
-            <price>12729.23</price>
-        </prices>
-        <prices>
-            <date>2023-03-24</date>
-            <price>12767.05</price>
-        </prices>
-        <prices>
-            <date>2023-03-25</date>
-            <price>12767.05</price>
-        </prices>
-        <prices>
-            <date>2023-03-26</date>
-            <price>12767.05</price>
-        </prices>
-        <prices>
-            <date>2023-03-27</date>
-            <price>12673.07</price>
-        </prices>
+        <stockName>RVXCLS</stockName>
         <prices>
             <date>2023-03-28</date>
-            <price>12610.57</price>
+            <price>26.15</price>
         </prices>
         <prices>
             <date>2023-03-29</date>
-            <price>12846.03</price>
+            <price>25.02</price>
         </prices>
         <prices>
             <date>2023-03-30</date>
-            <price>12963.14</price>
+            <price>24.93</price>
         </prices>
         <prices>
             <date>2023-03-31</date>
-            <price>13181.35</price>
+            <price>24.03</price>
         </prices>
         <prices>
             <date>2023-04-01</date>
-            <price>13181.35</price>
+            <price>24.03</price>
         </prices>
         <prices>
             <date>2023-04-02</date>
-            <price>13181.35</price>
+            <price>24.03</price>
         </prices>
         <prices>
             <date>2023-04-03</date>
-            <price>13148.35</price>
+            <price>24.27</price>
         </prices>
         <prices>
             <date>2023-04-04</date>
-            <price>13100.07</price>
+            <price>25.33</price>
         </prices>
         <prices>
             <date>2023-04-05</date>
-            <price>12967.2</price>
+            <price>25.76</price>
         </prices>
         <prices>
             <date>2023-04-06</date>
-            <price>13062.6</price>
+            <price>24.6</price>
         </prices>
         <prices>
             <date>2023-04-07</date>
-            <price>13062.6</price>
+            <price>24.6</price>
         </prices>
         <prices>
             <date>2023-04-08</date>
-            <price>13062.6</price>
+            <price>24.6</price>
         </prices>
         <prices>
             <date>2023-04-09</date>
-            <price>13062.6</price>
+            <price>24.6</price>
         </prices>
         <prices>
             <date>2023-04-10</date>
-            <price>13051.23</price>
+            <price>25.03</price>
         </prices>
         <prices>
             <date>2023-04-11</date>
-            <price>12964.15</price>
+            <price>24.93</price>
         </prices>
         <prices>
             <date>2023-04-12</date>
-            <price>12848.35</price>
+            <price>24.54</price>
         </prices>
         <prices>
             <date>2023-04-13</date>
-            <price>13109.39</price>
+            <price>23.02</price>
         </prices>
         <prices>
             <date>2023-04-14</date>
-            <price>13079.52</price>
+            <price>22.25</price>
         </prices>
         <prices>
             <date>2023-04-15</date>
-            <price>13079.52</price>
+            <price>22.25</price>
         </prices>
         <prices>
             <date>2023-04-16</date>
-            <price>13079.52</price>
+            <price>22.25</price>
         </prices>
         <prices>
             <date>2023-04-17</date>
-            <price>13087.71</price>
+            <price>22.09</price>
         </prices>
         <prices>
             <date>2023-04-18</date>
-            <price>13091.79</price>
+            <price>21.82</price>
         </prices>
         <prices>
             <date>2023-04-19</date>
-            <price>13088.71</price>
+            <price>21.54</price>
         </prices>
         <prices>
             <date>2023-04-20</date>
-            <price>12985.98</price>
+            <price>22.08</price>
         </prices>
         <prices>
             <date>2023-04-21</date>
-            <price>13000.77</price>
+            <price>21.75</price>
         </prices>
         <prices>
             <date>2023-04-22</date>
-            <price>13000.77</price>
+            <price>21.75</price>
         </prices>
         <prices>
             <date>2023-04-23</date>
-            <price>13000.77</price>
+            <price>21.75</price>
         </prices>
         <prices>
             <date>2023-04-24</date>
-            <price>12969.76</price>
+            <price>21.83</price>
         </prices>
         <prices>
             <date>2023-04-25</date>
-            <price>12725.11</price>
+            <price>24.65</price>
         </prices>
         <prices>
             <date>2023-04-26</date>
-            <price>12806.48</price>
+            <price>24.79</price>
         </prices>
         <prices>
             <date>2023-04-27</date>
-            <price>13160.03</price>
+            <price>22.27</price>
         </prices>
         <prices>
             <date>2023-04-28</date>
-            <price>13245.99</price>
+            <price>20.81</price>
         </prices>
         <prices>
             <date>2023-04-29</date>
-            <price>13245.99</price>
+            <price>20.81</price>
         </prices>
         <prices>
             <date>2023-04-30</date>
-            <price>13245.99</price>
+            <price>20.81</price>
         </prices>
         <prices>
             <date>2023-05-01</date>
-            <price>13231.47</price>
+            <price>21.08</price>
         </prices>
         <prices>
             <date>2023-05-02</date>
-            <price>13113.66</price>
+            <price>23.79</price>
         </prices>
         <prices>
             <date>2023-05-03</date>
-            <price>13030.21</price>
+            <price>24.28</price>
         </prices>
         <prices>
             <date>2023-05-04</date>
-            <price>12982.48</price>
+            <price>26.71</price>
         </prices>
         <prices>
             <date>2023-05-05</date>
-            <price>13259.13</price>
+            <price>23.71</price>
         </prices>
         <prices>
             <date>2023-05-06</date>
-            <price>13259.13</price>
+            <price>23.71</price>
         </prices>
         <prices>
             <date>2023-05-07</date>
-            <price>13259.13</price>
+            <price>23.71</price>
         </prices>
         <prices>
             <date>2023-05-08</date>
-            <price>13291.64</price>
+            <price>23.77</price>
         </prices>
         <prices>
             <date>2023-05-09</date>
-            <price>13201.11</price>
+            <price>24.14</price>
         </prices>
         <prices>
             <date>2023-05-10</date>
-            <price>13347.83</price>
+            <price>22.76</price>
         </prices>
         <prices>
             <date>2023-05-11</date>
-            <price>13389.78</price>
+            <price>22.9</price>
         </prices>
         <prices>
             <date>2023-05-12</date>
-            <price>13340.18</price>
+            <price>22.73</price>
         </prices>
         <prices>
             <date>2023-05-13</date>
-            <price>13340.18</price>
+            <price>22.73</price>
         </prices>
         <prices>
             <date>2023-05-14</date>
-            <price>13340.18</price>
+            <price>22.73</price>
         </prices>
         <prices>
             <date>2023-05-15</date>
-            <price>13413.51</price>
+            <price>22.6</price>
         </prices>
         <prices>
             <date>2023-05-16</date>
-            <price>13426.01</price>
+            <price>23.67</price>
         </prices>
         <prices>
             <date>2023-05-17</date>
-            <price>13589.26</price>
+            <price>22.54</price>
         </prices>
         <prices>
             <date>2023-05-18</date>
-            <price>13834.62</price>
+            <price>21.47</price>
         </prices>
         <prices>
             <date>2023-05-19</date>
-            <price>13803.49</price>
+            <price>22.64</price>
         </prices>
         <prices>
             <date>2023-05-20</date>
-            <price>13803.49</price>
+            <price>22.64</price>
         </prices>
         <prices>
             <date>2023-05-21</date>
-            <price>13803.49</price>
+            <price>22.64</price>
         </prices>
         <prices>
             <date>2023-05-22</date>
-            <price>13849.74</price>
+            <price>22.42</price>
         </prices>
         <prices>
             <date>2023-05-23</date>
-            <price>13672.54</price>
+            <price>23.94</price>
         </prices>
         <prices>
             <date>2023-05-24</date>
-            <price>13604.48</price>
+            <price>25.43</price>
         </prices>
         <prices>
             <date>2023-05-25</date>
-            <price>13938.53</price>
+            <price>25.42</price>
         </prices>
         <prices>
             <date>2023-05-26</date>
-            <price>14298.41</price>
+            <price>23.51</price>
         </prices>
         <prices>
             <date>2023-05-27</date>
-            <price>14298.41</price>
+            <price>23.51</price>
         </prices>
         <prices>
             <date>2023-05-28</date>
-            <price>14298.41</price>
+            <price>23.51</price>
         </prices>
         <prices>
             <date>2023-05-29</date>
-            <price>14298.41</price>
+            <price>23.51</price>
         </prices>
         <prices>
             <date>2023-05-30</date>
-            <price>14354.99</price>
+            <price>23.49</price>
         </prices>
         <prices>
             <date>2023-05-31</date>
-            <price>14254.09</price>
+            <price>23.95</price>
         </prices>
     </stock>
     <crypto>
-        <cryptoName>bitcoin</cryptoName>
-        <prices>
-            <date>2023-03-08</date>
-            <price>22415.113659694827</price>
-        </prices>
-        <prices>
-            <date>2023-03-09</date>
-            <price>22217.209884905325</price>
-        </prices>
-        <prices>
-            <date>2023-03-10</date>
-            <price>21712.65119391273</price>
-        </prices>
-        <prices>
-            <date>2023-03-11</date>
-            <price>20376.320007428807</price>
-        </prices>
-        <prices>
-            <date>2023-03-12</date>
-            <price>20195.2289502733</price>
-        </prices>
-        <prices>
-            <date>2023-03-13</date>
-            <price>20521.55615175117</price>
-        </prices>
-        <prices>
-            <date>2023-03-14</date>
-            <price>22095.71339833569</price>
-        </prices>
-        <prices>
-            <date>2023-03-15</date>
-            <price>24178.95532797469</price>
-        </prices>
-        <prices>
-            <date>2023-03-16</date>
-            <price>24758.765085827567</price>
-        </prices>
-        <prices>
-            <date>2023-03-17</date>
-            <price>24470.88205445031</price>
-        </prices>
-        <prices>
-            <date>2023-03-18</date>
-            <price>25161.272017520052</price>
-        </prices>
-        <prices>
-            <date>2023-03-19</date>
-            <price>27466.677829829863</price>
-        </prices>
-        <prices>
-            <date>2023-03-20</date>
-            <price>27107.792183504385</price>
-        </prices>
-        <prices>
-            <date>2023-03-21</date>
-            <price>28186.842652360127</price>
-        </prices>
-        <prices>
-            <date>2023-03-22</date>
-            <price>27929.167733140293</price>
-        </prices>
-        <prices>
-            <date>2023-03-23</date>
-            <price>28264.23961052235</price>
-        </prices>
-        <prices>
-            <date>2023-03-24</date>
-            <price>27449.254830807356</price>
-        </prices>
-        <prices>
-            <date>2023-03-25</date>
-            <price>28459.735113552502</price>
-        </prices>
-        <prices>
-            <date>2023-03-26</date>
-            <price>27595.4947483755</price>
-        </prices>
-        <prices>
-            <date>2023-03-27</date>
-            <price>27670.199498496833</price>
-        </prices>
+        <cryptoName>ethereum</cryptoName>
         <prices>
             <date>2023-03-28</date>
-            <price>28048.46997853496</price>
+            <price>1776.867690456723</price>
         </prices>
         <prices>
             <date>2023-03-29</date>
-            <price>27182.299559950465</price>
+            <price>1719.1709726748606</price>
         </prices>
         <prices>
             <date>2023-03-30</date>
-            <price>27291.3500210497</price>
+            <price>1776.0436393298319</price>
         </prices>
         <prices>
             <date>2023-03-31</date>
-            <price>28394.997780199057</price>
+            <price>1795.5369478273235</price>
         </prices>
         <prices>
             <date>2023-04-02</date>
-            <price>28516.784729688636</price>
+            <price>1824.0200055528176</price>
         </prices>
         <prices>
             <date>2023-04-03</date>
-            <price>28498.94463304862</price>
+            <price>1823.0003798253083</price>
         </prices>
         <prices>
             <date>2023-04-04</date>
-            <price>28236.508738939792</price>
+            <price>1797.7369883938552</price>
         </prices>
         <prices>
             <date>2023-04-05</date>
-            <price>27815.42653124798</price>
+            <price>1810.466255484756</price>
         </prices>
         <prices>
             <date>2023-04-06</date>
-            <price>28175.33033421539</price>
+            <price>1871.333525898643</price>
         </prices>
         <prices>
             <date>2023-04-07</date>
-            <price>28197.20034124555</price>
+            <price>1911.3386899517511</price>
         </prices>
         <prices>
             <date>2023-04-08</date>
-            <price>28042.9833864884</price>
+            <price>1872.2466823679094</price>
         </prices>
         <prices>
             <date>2023-04-09</date>
-            <price>27934.43871284895</price>
+            <price>1866.6575447874154</price>
         </prices>
         <prices>
             <date>2023-04-10</date>
-            <price>27968.12804705512</price>
+            <price>1851.0506710706206</price>
         </prices>
         <prices>
             <date>2023-04-11</date>
-            <price>28351.23699385011</price>
+            <price>1859.9403872878142</price>
         </prices>
         <prices>
             <date>2023-04-12</date>
-            <price>29657.974136873556</price>
+            <price>1909.8820609415914</price>
         </prices>
         <prices>
             <date>2023-04-13</date>
-            <price>30260.93610940865</price>
+            <price>1892.938911069582</price>
         </prices>
         <prices>
             <date>2023-04-14</date>
-            <price>29904.138694718906</price>
+            <price>1920.2230311931223</price>
         </prices>
         <prices>
             <date>2023-04-15</date>
-            <price>30405.027312781145</price>
+            <price>2012.785415162006</price>
         </prices>
         <prices>
             <date>2023-04-16</date>
-            <price>30468.40870059078</price>
+            <price>2102.9461882949076</price>
         </prices>
         <prices>
             <date>2023-04-17</date>
-            <price>30312.16187965924</price>
+            <price>2093.166331331955</price>
         </prices>
         <prices>
             <date>2023-04-18</date>
-            <price>30304.807514785844</price>
+            <price>2118.5987891538853</price>
         </prices>
         <prices>
             <date>2023-04-19</date>
-            <price>29467.459829260344</price>
+            <price>2077.5356646371833</price>
         </prices>
         <prices>
             <date>2023-04-20</date>
-            <price>30365.904167541412</price>
+            <price>2103.2788135921514</price>
         </prices>
         <prices>
             <date>2023-04-21</date>
-            <price>28833.217501221105</price>
+            <price>1936.4259207983632</price>
         </prices>
         <prices>
             <date>2023-04-22</date>
-            <price>28255.57824866478</price>
+            <price>1943.4355981925776</price>
         </prices>
         <prices>
             <date>2023-04-23</date>
-            <price>27300.157128515566</price>
+            <price>1850.1497384242152</price>
         </prices>
         <prices>
             <date>2023-04-24</date>
-            <price>27861.640663476548</price>
+            <price>1877.5413280611456</price>
         </prices>
         <prices>
             <date>2023-04-25</date>
-            <price>27606.578347653143</price>
+            <price>1863.6391422142244</price>
         </prices>
         <prices>
             <date>2023-04-26</date>
-            <price>27511.635682161308</price>
+            <price>1842.6307920871575</price>
         </prices>
         <prices>
             <date>2023-04-27</date>
-            <price>28351.218248373007</price>
+            <price>1870.5652231230274</price>
         </prices>
         <prices>
             <date>2023-04-28</date>
-            <price>28352.19132059668</price>
+            <price>1867.5893250124868</price>
         </prices>
         <prices>
             <date>2023-04-29</date>
-            <price>29483.52170499186</price>
+            <price>1910.456779102895</price>
         </prices>
         <prices>
             <date>2023-04-30</date>
-            <price>29339.99499754935</price>
+            <price>1894.4280839501073</price>
         </prices>
         <prices>
             <date>2023-04-31</date>
-            <price>29217.944046809913</price>
+            <price>1905.2738522732104</price>
         </prices>
         <prices>
             <date>2023-05-02</date>
-            <price>29362.056213625394</price>
+            <price>1885.3919353369215</price>
         </prices>
         <prices>
             <date>2023-05-03</date>
-            <price>28125.501155636823</price>
+            <price>1832.725799406749</price>
         </prices>
         <prices>
             <date>2023-05-04</date>
-            <price>28654.390133326717</price>
+            <price>1870.828572787594</price>
         </prices>
         <prices>
             <date>2023-05-05</date>
-            <price>28988.320996249273</price>
+            <price>1903.7282107352776</price>
         </prices>
         <prices>
             <date>2023-05-06</date>
-            <price>28846.461458608057</price>
+            <price>1877.4011950525364</price>
         </prices>
         <prices>
             <date>2023-05-07</date>
-            <price>29520.322268970496</price>
+            <price>1993.6129657474344</price>
         </prices>
         <prices>
             <date>2023-05-08</date>
-            <price>28887.741045523366</price>
+            <price>1900.410599025731</price>
         </prices>
         <prices>
             <date>2023-05-09</date>
-            <price>28611.439197614574</price>
+            <price>1895.2301480548908</price>
         </prices>
         <prices>
             <date>2023-05-10</date>
-            <price>27696.76078562556</price>
+            <price>1849.2886295625283</price>
         </prices>
         <prices>
             <date>2023-05-11</date>
-            <price>27607.39168091902</price>
+            <price>1846.0642640231483</price>
         </prices>
         <prices>
             <date>2023-05-12</date>
-            <price>27639.73356593586</price>
+            <price>1842.865558834664</price>
         </prices>
         <prices>
             <date>2023-05-13</date>
-            <price>27024.76572929978</price>
+            <price>1798.0719455262627</price>
         </prices>
         <prices>
             <date>2023-05-14</date>
-            <price>26787.69039591833</price>
+            <price>1808.6949999015692</price>
         </prices>
         <prices>
             <date>2023-05-15</date>
-            <price>26798.126271474703</price>
+            <price>1797.1994701376498</price>
         </prices>
         <prices>
             <date>2023-05-16</date>
-            <price>26911.805273213893</price>
+            <price>1799.0086586150053</price>
         </prices>
         <prices>
             <date>2023-05-17</date>
-            <price>27227.793422558792</price>
+            <price>1820.0447595407188</price>
         </prices>
         <prices>
             <date>2023-05-18</date>
-            <price>27022.713173921147</price>
+            <price>1823.6630183475188</price>
         </prices>
         <prices>
             <date>2023-05-19</date>
-            <price>27389.971511442203</price>
+            <price>1821.050634709663</price>
         </prices>
         <prices>
             <date>2023-05-20</date>
-            <price>26842.95249471792</price>
+            <price>1802.3909554834493</price>
         </prices>
         <prices>
             <date>2023-05-21</date>
-            <price>26884.371059589947</price>
+            <price>1812.1317035605853</price>
         </prices>
         <prices>
             <date>2023-05-22</date>
-            <price>27093.79110149735</price>
+            <price>1818.9695295035847</price>
         </prices>
         <prices>
             <date>2023-05-23</date>
-            <price>26773.83024366478</price>
+            <price>1804.9290671072804</price>
         </prices>
         <prices>
             <date>2023-05-24</date>
-            <price>26869.686021790778</price>
+            <price>1818.4014644980855</price>
         </prices>
         <prices>
             <date>2023-05-25</date>
-            <price>27222.937746603853</price>
+            <price>1854.1931182731782</price>
         </prices>
         <prices>
             <date>2023-05-26</date>
-            <price>26338.948946998687</price>
+            <price>1800.736010305837</price>
         </prices>
         <prices>
             <date>2023-05-27</date>
-            <price>26475.607902534273</price>
+            <price>1805.8057604056937</price>
         </prices>
         <prices>
             <date>2023-05-28</date>
-            <price>26717.987553571777</price>
+            <price>1828.9565366197276</price>
         </prices>
         <prices>
             <date>2023-05-29</date>
-            <price>26848.23993959246</price>
+            <price>1830.3066513168976</price>
         </prices>
         <prices>
             <date>2023-05-30</date>
-            <price>28110.313467609285</price>
+            <price>1913.8162493165785</price>
         </prices>
         <prices>
             <date>2023-05-31</date>
-            <price>27759.746663920676</price>
+            <price>1893.7142740897043</price>
         </prices>
     </crypto>
 </data>
