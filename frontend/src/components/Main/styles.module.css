@@ -4,21 +4,33 @@ body {
 	overflow-x: hidden;
 	font-family: Arial, Helvetica, sans-serif;
 }
+.content {
+	margin: 25px;
+}
+.margin {
+	margin-bottom: 15px;
+}
 .nav {
 	width: 100%;
+	height: fit-content;
 	display: flex;
-	height: 50px;
 	flex-direction: row-reverse;
+	align-items: center;
 	gap: 45px;
-	border-bottom: 2px solid #2c3e50;
+	position: absolute;
+	top: 0;
+	right: 50px;
 }
-.nav_btn {
-	display: block;
-	padding: 2px 25px;
-	background-color: #0066cc;
-	border-radius: 18px;
-	font-weight: 700;
+.nav_link {
 	color: #e5e5e5;
+	cursor: pointer;
+	background: none;
+	border: none;
+	margin-top: 10px;
+	font-size: 16px;
+}
+.nav_link:hover {
+	color: #0066cc;
 }
 h2 {
 	margin: 0;
@@ -26,6 +38,7 @@ h2 {
 .options {
 	display: flex;
 	flex-direction: column;
+	margin-bottom: 10px;
 }
 .opt {
 	padding: 0 15px;
@@ -42,9 +55,10 @@ h2 {
 }
 .selectStyle {
 	padding: 5px 30px;
-	background-color: #0066cc;
-	color: #e5e5e5;
+	background-color: #e5e5e5;
+	color: #1b1b1b;
 	font-weight: 700;
+	cursor: pointer;
 }
 ::placeholder {
 	color: #c6c6c6;
@@ -59,6 +73,16 @@ h2 {
 	border-radius: 5px;
 	font-weight: 700;
 }
+.inputStyle_white {
+	padding: 5px 10px;
+	border: 0;
+	background-color: #e5e5e5;
+	border-radius: 5px;
+	font-weight: 700;
+}
+.inputStyle_white::placeholder {
+	color: #1b1b1b;
+}
 .optionStyle {
 	padding: 8px 30px;
 	border-radius: 12px;
@@ -66,6 +90,7 @@ h2 {
 	background-color: #0066cc;
 	color: #e5e5e5;
 	font-weight: 700;
+	cursor: pointer;
 }
 .optionStyle:hover {
 	background-color: #e5e5e5;
@@ -78,4 +103,8 @@ label {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+.date {
+	cursor: pointer;
+	background: #e5e5e5;
 }

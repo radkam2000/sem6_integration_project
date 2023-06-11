@@ -89,6 +89,7 @@ const DataOptions = (props) => {
 						"x-access-token": token,
 					},
 					data: { formData, chosenOptions },
+					// TODO do sth with response -> show it on chart
 				};
 				const res = await axios(config);
 			} catch (error) {
@@ -118,7 +119,7 @@ const DataOptions = (props) => {
 	const saveToDB = async () => {};
 	return (
 		<div className={styles.options}>
-			<h2>Zarządzaj danymi</h2>
+			<h2 className={styles.margin}>Zarządzaj danymi</h2>
 			<div className={styles.opt}>
 				<p className={styles.opt_container}>
 					<label>API</label>

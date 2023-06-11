@@ -7,9 +7,11 @@ const Nav = () => {
 	};
 	return (
 		<div className={styles.nav}>
-			<button className={styles.nav_btn} onClick={handleLogout}>
+			<button className={styles.nav_link} onClick={handleLogout}>
 				Wyloguj się
 			</button>
+			<button className={styles.nav_link}>Zmień hasło</button>
+			<button className={styles.nav_link}>Sczegóły konta</button>
 		</div>
 	);
 };
