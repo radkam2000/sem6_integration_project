@@ -18,11 +18,11 @@ router.post("/json", uploads.single("file"), async (req, res) => {
 		result = await uploadController.JSONupload();
 		res.status(200).send({
 			stock: {
-				stockName: req.body.stockName.toUppercase(),
+				stockName: result.stock.stockName,
 				prices: result.stock,
 			},
 			crypto: {
-				cryptoName: req.body.cryptoName.toLowerCase(),
+				cryptoName: result.crypto.cryptoName,
 				prices: result.crypto,
 			},
 			message: "File received succesfully",
@@ -38,11 +38,11 @@ router.post("/xml", uploads.single("file"), async (req, res) => {
 		result = await uploadController.XMLupload();
 		res.status(200).send({
 			stock: {
-				stockName: req.body.stockName.toUpperCase(),
+				stockName: result.stock.stockName,
 				prices: result.stock,
 			},
 			crypto: {
-				cryptoName: req.body.cryptoName.toLowerCase(),
+				cryptoName: result.crypto.cryptoName,
 				prices: result.crypto,
 			},
 			message: "File received succesfully",
