@@ -5,10 +5,14 @@ const DataOptions = (props) => {
 	const {
 		setStockData,
 		setCryptoData,
+		setStockName,
+		setCryptoName,
 		stockData,
 		cryptoData,
 		setPobrano,
 		chosenOptions,
+		setStartDate,
+		setEndDate,
 	} = props;
 	const [fileType, setFileType] = useState("xml");
 
@@ -23,11 +27,14 @@ const DataOptions = (props) => {
 						"Content-Type": "application/json",
 						"x-access-token": token,
 					},
-					data: chosenOptions,
 				};
 				const { data: res } = await axios(config);
-				setStockData(res.stock);
-				setCryptoData(res.crypto);
+				setCryptoName(res.crypto.cryptoName.toUpperCase());
+				setStockName(res.stock.stockName.toUpperCase());
+				setStockData(res.stock.prices);
+				setCryptoData(res.crypto.prices);
+				setStartDate(res.startDate);
+				setEndDate(res.endDate);
 				if (stockData !== [] && cryptoData !== []) setPobrano(true);
 			} catch (error) {
 				if (
@@ -45,7 +52,7 @@ const DataOptions = (props) => {
 		if (token) {
 			try {
 				const config = {
-					method: "get",
+					method: "post",
 					url: "http://localhost:5000/api/download/" + fileType,
 					headers: { "x-access-token": token },
 					responseType: "blob",
@@ -88,10 +95,15 @@ const DataOptions = (props) => {
 						"Content-Type": "multipart/form-data",
 						"x-access-token": token,
 					},
-					data: { formData, chosenOptions },
-					// TODO do sth with response -> show it on chart
+					data: formData,
 				};
 				const res = await axios(config);
+				setCryptoName(res.crypto.cryptoName.toUpperCase());
+				setStockName(res.stock.stockName);
+				setStockData(res.stock.prices);
+				setCryptoData(res.crypto.prices);
+				setStartDate(res.startDate);
+				setEndDate(res.endDate);
 			} catch (error) {
 				if (
 					error.response &&
