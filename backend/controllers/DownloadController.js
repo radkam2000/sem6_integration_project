@@ -32,10 +32,6 @@ const downloadJSON = async (cryptoName, stockName, startDate, endDate) => {
 			return currentDate >= startDateObj && currentDate <= endDateObj;
 		});
 
-		printLast15Elements(stock);
-		console.log(filtered_stock);
-		console.log(filtered_crypto);
-
 		filtered_stock = humanReadableParser.stock(stockName, filtered_stock);
 		filtered_crypto = humanReadableParser.crypto(
 			cryptoName,

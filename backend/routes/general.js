@@ -32,11 +32,12 @@ router.post("/getData", async (req, res) => {
 			req.body.startDate,
 			req.body.endDate
 		);
+		console.log(result);
 		res.status(result.status).send({
 			stock: { stockName: req.body.stockName, prices: result.stock },
 			crypto: { cryptoName: req.body.cryptoName, prices: result.crypto },
-			startDate: result.crypto.prices[0][0],
-			endDate: result.crypto.prices[result.crypto.prices.length - 1][0],
+			startDate: result.crypto[0][0],
+			endDate: result.crypto[result.crypto.length - 1][0],
 			message: result.message,
 		});
 	} catch (error) {
