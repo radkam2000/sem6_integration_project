@@ -2,7 +2,7 @@ const getCryptoData = require("../apis/cryptoApi");
 const getStockData = require("../apis/stockApi");
 const humanReadableParser = require("../parsers/humanReadableParser");
 const js2xmlparser = require("js2xmlparser");
-const fs = require("fs");
+const fs = require("fs").promises;
 
 const downloadJSON = async () => {
 	try {

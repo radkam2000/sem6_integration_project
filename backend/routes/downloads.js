@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const { downloadJSON } = require("../controllers/GeneralActionController");
 const jwt_auth = require("../middleware/jwt_auth");
 downloadController = require("../controllers/DownloadController");
 
@@ -17,7 +16,7 @@ router.get("/xml", async (req, res) => {
 
 router.get("/json", async (req, res) => {
 	try {
-		result = await downloadJSON.downloadJSON();
+		result = await downloadController.downloadJSON();
 		res.status(result.status).download(
 			`${__dirname}/../downloads/data.json`
 		);
