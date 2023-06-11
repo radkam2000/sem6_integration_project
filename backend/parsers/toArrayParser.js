@@ -1,31 +1,30 @@
-const crypto = (data) => {
-	const result = {
-		crypto: [],
-	};
-
-	for (const item of data.prices) {
-		const date = item.date;
-		const price = item.price;
-
-		result.crypto.push([date, price]);
-	}
-
-	return result;
+const cryptoJSON = (data) => {
+	const cryptoData = data.crypto.prices.map((item) => [
+		item.date,
+		item.price,
+	]);
+	return cryptoData;
 };
 
-const stock = (data) => {
-	const result = {
-		stock: [],
-	};
-
-	for (const item of data.prices) {
-		const date = item.date;
-		const price = item.price;
-
-		result.stock.push([date, price]);
-	}
-
-	return result;
+const stockJSON = (data) => {
+	const stockData = data.stock.prices.map((item) => [item.date, item.price]);
+	return stockData;
 };
 
-module.exports = { stock, crypto };
+const stockXML = (data) => {
+	const stockData = data.stock.prices.map((item) => [
+		item.date._text,
+		item.price._text,
+	]);
+	return stockData;
+};
+
+const cryptoXML = (data) => {
+	const cryptoData = data.stock.prices.map((item) => [
+		item.date._text,
+		item.price._text,
+	]);
+	return cryptoData;
+};
+
+module.exports = { cryptoJSON, cryptoXML, stockJSON, stockXML };

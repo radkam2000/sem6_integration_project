@@ -4,48 +4,6 @@ const jwt_auth = require("../middleware/jwt_auth");
 const { validateCryptoData, CryptoData } = require("../models/CryptoData");
 const { validateStockData, StockData } = require("../models/StockData");
 
-router.post("/crypto/addNewData", async (req, res) => {
-	try {
-		const { error } = validateCryptoData(req.body.crypto);
-		if (error) {
-			console.error(error.details);
-			return res.status(400).send({ message: error.details[0].message });
-		}
-		const crypto = await CryptoData.findOne({
-			cryptoName: req.body.crypto.cryptoName,
-		});
-		if (crypto)
-			return res.status(409).send({ message: "Data already exists" });
-		await new CryptoData({ ...req.body.crypto }).save();
-		// c = await CryptoData.findOne({ cryptoName: "Bitcoin" });
-		// console.log(c.prices[0].date.getDate());
-		res.status(201).send({ message: "Data added successfull" });
-	} catch (error) {
-		console.error(error);
-		res.status(500).send({ message: "Internal Server Error" });
-	}
-});
-
-router.post("/stock/addNewData", async (req, res) => {
-	try {
-		const { error } = validateCryptoData(req.body.stock);
-		if (error) {
-			console.error(error.details);
-			return res.status(400).send({ message: error.details[0].message });
-		}
-		const stock = await StockData.findOne({
-			stockName: req.body.stock.stockName,
-		});
-		if (stock)
-			return res.status(409).send({ message: "Data already exists" });
-		await new StockData({ ...req.body.stock }).save();
-		res.status(201).send({ message: "Data added successfull" });
-	} catch (error) {
-		console.error(error);
-		res.status(500).send({ message: "Internal Server Error" });
-	}
-});
-
 router.post("/addNewData", async (req, res) => {
 	try {
 		var { error } = validateCryptoData(req.body.crypto);
