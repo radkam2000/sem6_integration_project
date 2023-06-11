@@ -16,7 +16,7 @@ const Main = () => {
 		try {
 			const config = {
 				method: "get",
-				url: "http://localhost:5000/api/data_api",
+				url: "http://localhost:5000/api/general/getData",
 				headers: { "Content-Type": "application/json" },
 			};
 			const { data: res } = await axios(config);
@@ -153,26 +153,23 @@ const Main = () => {
 	const [cryptoName, setCryptoName] = useState("");
 	const [stockName, setStockName] = useState("");
 	const sendNames = async (req, res) => {
-		const data = { cryptoName: cryptoName, stockName: stockName };
-		console.log(data);
 		try {
-			const response = await axios.post("http://localhost:5000/", data);
-			console.log(response.data);
+			const data = { cryptoName: cryptoName, stockName: stockName };
+			const res = await axios.post("http://localhost:5000/api/", data);
+			console.log("Names sent successfully!", res.data);
 		} catch (error) {
 			console.error(error);
 		}
-	};
-	const inputFile = useRef(null);
-	const chooseFile = () => {
-		inputFile.current.click();
 	};
 	const [fileType, setFileType] = useState("xml");
 	const handleExport = async () => {
 		try {
 			const config = {
 				method: "get",
-				url: "http://localhost:5000/api/download/" + { fileType },
+				url: "http://localhost:5000/api/download/" + fileType,
 			};
+			const res = await axios(config);
+			console.log("File exported successfully!", res);
 		} catch (error) {
 			if (
 				error.response &&
@@ -180,6 +177,45 @@ const Main = () => {
 				error.response.status <= 500
 			) {
 				window.location.reload();
+			}
+		}
+	};
+	const inputFile = useRef(null);
+	const chooseFile = async () => {
+		inputFile.current.click();
+	};
+	const handleImport = async (file) => {
+		try {
+			const formData = new FormData();
+			formData.append("file", file);
+			const config = {
+				method: "post",
+				url: "http://localhost:5000/api/upload/" + fileType,
+				headers: { "Content-Type": "multipart/form-data" },
+				file: formData,
+			};
+			const res = await axios(config);
+			console.log("File uploaded successfully!", res.file);
+		} catch (error) {
+			if (
+				error.response &&
+				error.response.status >= 400 &&
+				error.response.status <= 500
+			) {
+				window.location.reload();
+			}
+		}
+	};
+	const handleFileChange = (e) => {
+		const file = e.target.files[0];
+		if (file) {
+			const extension = file.name.split(".").pop().toLowerCase();
+			if (extension === fileType) {
+				handleImport(file);
+			} else {
+				console.log(
+					"Invalid file type. Select " + { fileType } + "type file."
+				);
 			}
 		}
 	};
@@ -203,7 +239,7 @@ const Main = () => {
 							</button>
 						</p>
 						<p className={styles.opt_container}>
-							<label for="fileType">Plik</label>
+							<label htmlFor="fileType">Plik</label>
 							<select
 								className={styles.selectStyle}
 								id="fileType"
@@ -217,6 +253,7 @@ const Main = () => {
 								id="file"
 								ref={inputFile}
 								style={{ display: "none" }}
+								onChange={handleFileChange}
 							/>
 							<button
 								className={styles.optionStyle}
@@ -244,7 +281,7 @@ const Main = () => {
 				<h2>Zakres czasowy</h2>
 				<div className={styles.opt}>
 					<div className={styles.opt_container}>
-						<label for="startDate">Od: </label>
+						<label htmlFor="startDate">Od: </label>
 						<input
 							id="startDate"
 							type="date"
@@ -253,7 +290,7 @@ const Main = () => {
 							max="2023-06-14"
 							onChange={(e) => setStartDate(e.target.value)}
 						/>
-						<label for="endDate">Do: </label>
+						<label htmlFor="endDate">Do: </label>
 						<input
 							id="endDate"
 							type="date"
@@ -264,7 +301,9 @@ const Main = () => {
 						/>
 					</div>
 					<div className={styles.opt_container}>
-						<label for="investment">Zainwestowana kwota: </label>
+						<label htmlFor="investment">
+							Zainwestowana kwota:{" "}
+						</label>
 						<input
 							type="number"
 							name="investment"
