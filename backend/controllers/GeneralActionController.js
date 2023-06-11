@@ -1,9 +1,9 @@
 const getCryptoData = require("../apis/cryptoApi");
 const getStockData = require("../apis/stockApi");
 
-const calculateReturnRate = (startDate, endDate) => {};
-
-const calculateReturnRateFromValue = (value, startDate, EndDate) => {};
+const calculateReturnRate = (startValue, endValue) => {
+	return (endValue / (startValue - 1)) * 100;
+};
 
 const getData = async (cryptoName, stockName, startDate, endDate) => {
 	try {
@@ -35,4 +35,4 @@ const getData = async (cryptoName, stockName, startDate, endDate) => {
 	}
 };
 
-module.exports = { getData };
+module.exports = { getData, calculateReturnRate };

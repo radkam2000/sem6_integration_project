@@ -16,6 +16,14 @@ router.get("/getData", async (req, res) => {
 			endDate: "2023-01-01",
 			stock: { stockName: "NASDAQ100", prices: result.stock },
 			crypto: { cryptoName: "bitcoin", prices: result.crypto },
+			cryptoRate: generalController.calculateReturnRate(
+				result.crypto[0][1],
+				result.crypto[result.crypto.length - 1][1]
+			),
+			stockRate: generalController.calculateReturnRate(
+				result.stock[0][1],
+				result.stock[result.stock.length - 1][1]
+			),
 			message: result.message,
 		});
 	} catch (error) {
@@ -38,6 +46,14 @@ router.post("/getData", async (req, res) => {
 			crypto: { cryptoName: req.body.cryptoName, prices: result.crypto },
 			startDate: result.crypto[0][0],
 			endDate: result.crypto[result.crypto.length - 1][0],
+			cryptoRate: generalController.calculateReturnRate(
+				result.crypto[0][1],
+				result.crypto[result.crypto.length - 1][1]
+			),
+			stockRate: generalController.calculateReturnRate(
+				result.stock[0][1],
+				result.stock[result.stock.length - 1][1]
+			),
 			message: result.message,
 		});
 	} catch (error) {
