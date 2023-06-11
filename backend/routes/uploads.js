@@ -13,10 +13,14 @@ const storage = multer.diskStorage({
 
 const uploads = multer({ storage: storage });
 
-router.post("/json", uploads.single("file"), (req, res) => {
+router.post("/json", uploads.single("file"), async (req, res) => {
 	try {
-		console.log(req);
-		res.status(200).send({ message: "File received succesfully" });
+		result = await uploadController.JSONupload();
+		res.status(200).send({
+			stock: { stockName: req.body.stockName, prices: result.stock },
+			crypto: { cryptoName: req.body.crypto, prices: result.crypto },
+			message: "File received succesfully",
+		});
 	} catch (error) {
 		console.error(error);
 		res.status(500).send({ message: "Internal server error" });
@@ -25,8 +29,12 @@ router.post("/json", uploads.single("file"), (req, res) => {
 
 router.post("/xml", uploads.single("file"), async (req, res) => {
 	try {
-		//await uploadController.XMLupload();
-		res.status(200).send({ message: "File received succesfully" });
+		result = await uploadController.XMLupload();
+		res.status(200).send({
+			stock: result.stock,
+			crypto: result.crypto,
+			message: "File received succesfully",
+		});
 	} catch (error) {
 		console.error(error);
 		res.status(500).send({ message: "Internal server error" });

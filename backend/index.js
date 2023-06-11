@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const generalRouter = require("./routes/general");
-const dataDbRouter = require("./routes/dataFromDB");
+const dataDbRouter = require("./routes/dbOperations");
 const userRouter = require("./routes/user");
 const authUser = require("./routes/auth");
 const downloadRouter = require("./routes/downloads");
