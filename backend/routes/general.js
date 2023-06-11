@@ -2,6 +2,7 @@ const router = require("express").Router();
 require("dotenv").config();
 const jwt_auth = require("../middleware/jwt_auth");
 const generalController = require("../controllers/GeneralActionController");
+const dbController = require("../controllers/DatabaseDataController");
 
 router.get("/getData", async (req, res) => {
 	try {
@@ -27,8 +28,37 @@ router.get("/getData", async (req, res) => {
 			message: result.message,
 		});
 	} catch (error) {
-		console.error(error);
-		res.status(500).send({ message: "Internal Server Error" });
+		try {
+			result = await dbController.getData(
+				req.body.stockName ?? "NASDAQ100",
+				req.body.cryptoName ?? "bitcoin"
+			);
+			res.status(result.status).send({
+				stock: {
+					stockName: result.stock.stockName,
+					prices: result.stock.prices,
+				},
+				crypto: {
+					cryptoName: result.stock.cryptoName,
+					prices: result.crypto.prices,
+				},
+				startDate: result.crypto.prices[0][0],
+				endDate:
+					result.crypto.prices[result.crypto.prices.length - 1][0],
+				cryptoRate: generalController.calculateReturnRate(
+					result.crypto.prices[0][1],
+					result.crypto.prices[result.crypto.prices.length - 1][1]
+				),
+				stockRate: generalController.calculateReturnRate(
+					result.stock.prices[0][1],
+					result.stock.prices[result.stock.prices.length - 1][1]
+				),
+				message: result.message,
+			});
+		} catch (error) {
+			console.error(error);
+			res.status(500).send({ message: "Internal Server Error" });
+		}
 	}
 });
 
@@ -40,7 +70,6 @@ router.post("/getData", async (req, res) => {
 			req.body.startDate,
 			req.body.endDate
 		);
-		console.log(result);
 		res.status(result.status).send({
 			stock: { stockName: req.body.stockName, prices: result.stock },
 			crypto: { cryptoName: req.body.cryptoName, prices: result.crypto },
@@ -57,8 +86,37 @@ router.post("/getData", async (req, res) => {
 			message: result.message,
 		});
 	} catch (error) {
-		console.error(error);
-		res.status(500).send({ message: "Internal Server Error" });
+		try {
+			result = await dbController.getData(
+				req.body.stockName ?? "NASDAQ100",
+				req.body.cryptoName ?? "bitcoin"
+			);
+			res.status(result.status).send({
+				stock: {
+					stockName: result.stock.stockName,
+					prices: result.stock.prices,
+				},
+				crypto: {
+					cryptoName: result.stock.cryptoName,
+					prices: result.crypto.prices,
+				},
+				startDate: result.crypto.prices[0][0],
+				endDate:
+					result.crypto.prices[result.crypto.prices.length - 1][0],
+				cryptoRate: generalController.calculateReturnRate(
+					result.crypto.prices[0][1],
+					result.crypto.prices[result.crypto.prices.length - 1][1]
+				),
+				stockRate: generalController.calculateReturnRate(
+					result.stock.prices[0][1],
+					result.stock.prices[result.stock.prices.length - 1][1]
+				),
+				message: result.message,
+			});
+		} catch (error) {
+			console.error(error);
+			res.status(500).send({ message: "Internal Server Error" });
+		}
 	}
 });
 

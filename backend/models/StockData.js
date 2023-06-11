@@ -15,10 +15,10 @@ const StockData = mongoose.model("StockData", stockDataSchema, "stockData");
 
 const validateStockData = (data) => {
 	const schema = Joi.object({
-		stockName: Joi.string().required().label("Crypto name"),
+		stockName: Joi.string().required().label("Stock name"),
 		prices: Joi.array()
 			.items(
-				Joi.object.keys({
+				Joi.object({
 					date: Joi.date(),
 					price: Joi.number(),
 				})

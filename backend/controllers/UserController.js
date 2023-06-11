@@ -63,7 +63,7 @@ const deleteAccount = async (user, body) => {
 
 const getAccountData = async (user) => {
 	try {
-		const user = await User.find({ _id: user._id });
+		const user = await User.findOne({ _id: user._id });
 		return { status: 200, message: "Account Data", data: user };
 	} catch (error) {
 		throw error;
