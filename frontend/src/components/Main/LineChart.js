@@ -15,7 +15,7 @@ function LineChart({ chartData }) {
 			},
 			title: {
 				display: true,
-				text: "Kryptowaluty a SP&500",
+				text: "Kryptowaluty a NASDAQ",
 				color: "white",
 			},
 		},
