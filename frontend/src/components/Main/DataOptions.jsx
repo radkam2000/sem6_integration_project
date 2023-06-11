@@ -1,13 +1,121 @@
+import { useState, useRef } from "react";
+import axios from "axios";
 import styles from "./styles.module.css";
-const DataOptions = (
-	handleGetData,
-	setFileType,
-	handleFileChange,
-	chooseFile,
-	handleExport,
-	saveToDB,
-	inputFile
-) => {
+const DataOptions = (props) => {
+	const {
+		setStockData,
+		setCryptoData,
+		stockData,
+		cryptoData,
+		setPobrano,
+		chosenOptions,
+	} = props;
+	const [fileType, setFileType] = useState("xml");
+
+	const handleGetData = async () => {
+		const token = localStorage.getItem("token");
+		if (token) {
+			try {
+				const config = {
+					method: "get",
+					url: "http://localhost:5000/api/general/getData",
+					headers: {
+						"Content-Type": "application/json",
+						"x-access-token": token,
+					},
+					data: chosenOptions,
+				};
+				const { data: res } = await axios(config);
+				setStockData(res.stock);
+				setCryptoData(res.crypto);
+				if (stockData !== [] && cryptoData !== []) setPobrano(true);
+			} catch (error) {
+				if (
+					error.response &&
+					error.response.status >= 400 &&
+					error.response.status <= 500
+				) {
+					window.location.reload();
+				}
+			}
+		}
+	};
+	const handleExport = async () => {
+		const token = localStorage.getItem("token");
+		if (token) {
+			try {
+				const config = {
+					method: "get",
+					url: "http://localhost:5000/api/download/" + fileType,
+					headers: { "x-access-token": token },
+					responseType: "blob",
+					data: chosenOptions,
+				};
+				const res = await axios(config);
+				const url = window.URL.createObjectURL(new Blob([res.data]));
+				const link = document.createElement("a");
+				link.href = url;
+				link.setAttribute("download", "data." + fileType);
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
+				window.URL.revokeObjectURL(url);
+			} catch (error) {
+				if (
+					error.response &&
+					error.response.status >= 400 &&
+					error.response.status <= 500
+				) {
+					window.location.reload();
+				}
+			}
+		}
+	};
+	const inputFile = useRef(null);
+	const chooseFile = async () => {
+		inputFile.current.click();
+	};
+	const handleImport = async (file) => {
+		const token = localStorage.getItem("token");
+		if (token) {
+			try {
+				const formData = new FormData();
+				formData.append("file", file);
+				const config = {
+					method: "post",
+					url: "http://localhost:5000/api/upload/" + fileType,
+					headers: {
+						"Content-Type": "multipart/form-data",
+						"x-access-token": token,
+					},
+					data: { formData, chosenOptions },
+				};
+				const res = await axios(config);
+			} catch (error) {
+				if (
+					error.response &&
+					error.response.status >= 400 &&
+					error.response.status <= 500
+				) {
+					window.location.reload();
+				}
+			}
+		}
+	};
+	const handleFileChange = (e) => {
+		const file = e.target.files[0];
+		if (file) {
+			const extension = file.name.split(".").pop().toLowerCase();
+			if (extension === fileType) {
+				handleImport(file);
+			} else {
+				console.log(
+					"Invalid file type. Select " + { fileType } + "type file."
+				);
+			}
+		}
+	};
+	const saveToDB = async () => {};
 	return (
 		<div className={styles.options}>
 			<h2>Zarządzaj danymi</h2>
