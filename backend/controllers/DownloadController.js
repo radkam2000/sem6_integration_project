@@ -8,8 +8,7 @@ const downloadJSON = async (cryptoName, stockName, startDate, endDate) => {
 	try {
 		var stock = await getStockData(stockName);
 		var crypto = await getCryptoData(cryptoName);
-		stock = humanReadableParser.stock(stockName, stock);
-		crypto = humanReadableParser.crypto(cryptoName, crypto);
+
 		filtered_stock = stock.filter((item) => {
 			const currentDate = new Date(item[0]);
 			const startDateObj = new Date(startDate);
@@ -23,6 +22,15 @@ const downloadJSON = async (cryptoName, stockName, startDate, endDate) => {
 			const endDateObj = new Date(endDate);
 			return currentDate >= startDateObj && currentDate <= endDateObj;
 		});
+		console.log(stock);
+		console.log(filtered_stock);
+
+		filtered_stock = humanReadableParser.stock(stockName, filtered_stock);
+		filtered_crypto = humanReadableParser.crypto(
+			cryptoName,
+			filtered_crypto
+		);
+
 		toWrite = { data: { ...filtered_stock, ...filtered_crypto } };
 		toWrite = JSON.stringify(toWrite);
 		await fs.writeFile(
@@ -44,8 +52,7 @@ const downloadXML = async (cryptoName, stockName, startDate, endDate) => {
 	try {
 		var stock = await getStockData(stockName);
 		var crypto = await getCryptoData(cryptoName);
-		stock = humanReadableParser.stock(stockName, stock);
-		crypto = humanReadableParser.crypto(cryptoName, crypto);
+
 		filtered_stock = stock.filter((item) => {
 			const currentDate = new Date(item[0]);
 			const startDateObj = new Date(startDate);
@@ -59,6 +66,12 @@ const downloadXML = async (cryptoName, stockName, startDate, endDate) => {
 			const endDateObj = new Date(endDate);
 			return currentDate >= startDateObj && currentDate <= endDateObj;
 		});
+
+		filtered_stock = humanReadableParser.stock(stockName, filtered_stock);
+		filtered_crypto = humanReadableParser.crypto(
+			cryptoName,
+			filtered_crypto
+		);
 		toWrite = { ...filtered_stock, ...filtered_crypto };
 		toWrite = js2xmlparser.parse("data", toWrite);
 		await fs.writeFile(

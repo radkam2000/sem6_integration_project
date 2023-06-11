@@ -8,14 +8,14 @@ router.get("/getData", async (req, res) => {
 		result = await generalController.getData(
 			"bitcoin",
 			"NASDAQ100",
-			"2013-01-01",
+			"2013-04-29",
 			"2023-01-01"
 		);
 		res.status(result.status).send({
-			startDate: "2013-01-01",
+			startDate: "2013-04-29",
 			endDate: "2023-01-01",
-			stock: { stockName: req.body.stockName, prices: result.stock },
-			crypto: { cryptoName: req.body.cryptoName, prices: result.crypto },
+			stock: { stockName: "NASDAQ100", prices: result.stock },
+			crypto: { cryptoName: "bitcoin", prices: result.crypto },
 			message: result.message,
 		});
 	} catch (error) {

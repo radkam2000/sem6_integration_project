@@ -18,13 +18,13 @@ router.post("/addNewData", async (req, res) => {
 		}
 
 		const stock = await StockData.findOne({
-			stockName: req.body.stock.stockName,
+			stockName: req.body.stock.stockName.toUpperCase(),
 		});
 		if (stock)
 			return res.status(409).send({ message: "Data already exists" });
 
 		const crypto = await CryptoData.findOne({
-			cryptoName: req.body.crypto.cryptoName,
+			cryptoName: req.body.crypto.cryptoName.toLowerCase(),
 		});
 		if (crypto)
 			return res.status(409).send({ message: "Data already exists" });
@@ -42,7 +42,7 @@ router.post("/addNewData", async (req, res) => {
 router.get("/crypto/:name", async (req, res) => {
 	try {
 		const cryptoData = await CryptoData.findOne({
-			cryptoName: req.params.name,
+			cryptoName: req.params.name.toLowerCase(),
 		});
 		console.log(cryptoData);
 		return res.status(200).send({ cryptoData });
@@ -55,7 +55,7 @@ router.get("/crypto/:name", async (req, res) => {
 router.get("/stock/:name", async (req, res) => {
 	try {
 		const stockData = await StockData.findOne({
-			stockName: req.params.name,
+			stockName: req.params.name.toUpperCase(),
 		});
 		return res.status(200).send(stockData);
 	} catch (error) {
