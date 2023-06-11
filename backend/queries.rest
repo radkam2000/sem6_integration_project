@@ -24,7 +24,7 @@ Content-Type:  application/json
 }
 ###
 
-GET http://localhost:5000/api/data_api
+GET http://localhost:5000/api/general/getData
 
 ###
 
@@ -36,4 +36,16 @@ Content-Type:  application/json
   "lastName": "asldkfj",
   "email":"exampleeee@com.com",
   "password": "Qwerty1234!"
+}
+
+###
+
+get http://localhost:5000/api/general/getData
+Content-Type: application/json
+
+{
+    "cryptoName": "Bitcoin",
+    "stockName": "NASDAQ100",
+    "startDate": "2016-03-20",
+    "endDate": "2016-04-10"
 }
