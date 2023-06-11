@@ -2,9 +2,14 @@ const router = require("express").Router();
 const jwt_auth = require("../middleware/jwt_auth");
 downloadController = require("../controllers/DownloadController");
 
-router.get("/xml", async (req, res) => {
+router.post("/xml", async (req, res) => {
 	try {
-		result = await downloadController.downloadXML();
+		result = await downloadController.downloadXML(
+			req.body.cryptoName.toLowerCase(),
+			req.body.stockName.toUpperCase(),
+			req.body.startDate,
+			req.body.endDate
+		);
 		res.status(result.status).download(
 			`${__dirname}/../downloads/data.xml`
 		);
@@ -14,9 +19,14 @@ router.get("/xml", async (req, res) => {
 	}
 });
 
-router.get("/json", async (req, res) => {
+router.post("/json", async (req, res) => {
 	try {
-		result = await downloadController.downloadJSON();
+		result = await downloadController.downloadJSON(
+			req.body.cryptoName.toLowerCase(),
+			req.body.stockName.toUpperCase(),
+			req.body.startDate,
+			req.body.endDate
+		);
 		res.status(result.status).download(
 			`${__dirname}/../downloads/data.json`
 		);

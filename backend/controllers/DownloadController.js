@@ -4,13 +4,26 @@ const humanReadableParser = require("../parsers/humanReadableParser");
 const js2xmlparser = require("js2xmlparser");
 const fs = require("fs").promises;
 
-const downloadJSON = async () => {
+const downloadJSON = async (cryptoName, stockName, startDate, endDate) => {
 	try {
-		var stock = await getStockData();
-		var crypto = await getCryptoData();
-		stock = humanReadableParser.stock("NASDAQ", stock);
-		crypto = humanReadableParser.crypto("BITCOIN", crypto);
-		toWrite = { data: { ...stock, ...crypto } };
+		var stock = await getStockData(stockName);
+		var crypto = await getCryptoData(cryptoName);
+		stock = humanReadableParser.stock(stockName, stock);
+		crypto = humanReadableParser.crypto(cryptoName, crypto);
+		filtered_stock = stock.filter((item) => {
+			const currentDate = new Date(item[0]);
+			const startDateObj = new Date(startDate);
+			const endDateObj = new Date(endDate);
+			return currentDate >= startDateObj && currentDate <= endDateObj;
+		});
+
+		filtered_crypto = crypto.filter((item) => {
+			const currentDate = new Date(item[0]);
+			const startDateObj = new Date(startDate);
+			const endDateObj = new Date(endDate);
+			return currentDate >= startDateObj && currentDate <= endDateObj;
+		});
+		toWrite = { data: { ...filtered_stock, ...filtered_crypto } };
 		toWrite = JSON.stringify(toWrite);
 		await fs.writeFile(
 			`${__dirname}/../downloads/data.json`,
@@ -27,13 +40,26 @@ const downloadJSON = async () => {
 	}
 };
 
-const downloadXML = async () => {
+const downloadXML = async (cryptoName, stockName, startDate, endDate) => {
 	try {
-		var stock = await getStockData();
-		var crypto = await getCryptoData();
-		stock = humanReadableParser.stock("NASDAQ", stock);
-		crypto = humanReadableParser.crypto("BITCOIN", crypto);
-		toWrite = { ...stock, ...crypto };
+		var stock = await getStockData(stockName);
+		var crypto = await getCryptoData(cryptoName);
+		stock = humanReadableParser.stock(stockName, stock);
+		crypto = humanReadableParser.crypto(cryptoName, crypto);
+		filtered_stock = stock.filter((item) => {
+			const currentDate = new Date(item[0]);
+			const startDateObj = new Date(startDate);
+			const endDateObj = new Date(endDate);
+			return currentDate >= startDateObj && currentDate <= endDateObj;
+		});
+
+		filtered_crypto = crypto.filter((item) => {
+			const currentDate = new Date(item[0]);
+			const startDateObj = new Date(startDate);
+			const endDateObj = new Date(endDate);
+			return currentDate >= startDateObj && currentDate <= endDateObj;
+		});
+		toWrite = { ...filtered_stock, ...filtered_crypto };
 		toWrite = js2xmlparser.parse("data", toWrite);
 		await fs.writeFile(
 			`${__dirname}/../downloads/data.xml`,
