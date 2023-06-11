@@ -111,3 +111,16 @@ label {
 	cursor: pointer;
 	background: #e5e5e5;
 }
+.row {
+	display: flex;
+}
+.col {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+.col_content {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}

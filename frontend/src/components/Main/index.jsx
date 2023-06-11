@@ -6,7 +6,8 @@ import CustomCharts from "./CustomCharts";
 import styles from "./styles.module.css";
 
 const Main = () => {
-	const [rate, setRate] = useState("0");
+	const [cryptoRate, setCryptoRate] = useState("0");
+	const [stockRate, setStockRate] = useState("0");
 	const [stockData, setStockData] = useState([]);
 	const [cryptoData, setCryptoData] = useState([]);
 	const [cryptoName, setCryptoName] = useState("");
@@ -16,6 +17,8 @@ const Main = () => {
 	const [investment, setInvestment] = useState("");
 	const [pobrano, setPobrano] = useState(false);
 	const [showCharts, setShowCharts] = useState(false);
+	const [cryptoGain, setCryptoGain] = useState("0");
+	const [stockGain, setStockGain] = useState("0");
 
 	const [chosenOptions, setChosenOptions] = useState({
 		stockName,
@@ -30,9 +33,8 @@ const Main = () => {
 			cryptoName,
 			startDate,
 			endDate,
-			investment,
 		});
-	}, [stockName, cryptoName, startDate, endDate, investment]);
+	}, [stockName, cryptoName, startDate, endDate]);
 
 	return (
 		<div className="App">
@@ -49,6 +51,8 @@ const Main = () => {
 					chosenOptions={chosenOptions}
 					setStartDate={setStartDate}
 					setEndDate={setEndDate}
+					setCryptoRate={setCryptoRate}
+					setStockRate={setStockRate}
 				/>
 				<h2 className={styles.margin}>Zakres czasowy</h2>
 				<ChartOptions
@@ -71,8 +75,10 @@ const Main = () => {
 					pobrano={pobrano}
 					setShowCharts={setShowCharts}
 					showCharts={showCharts}
-					rate={rate}
-					setRate={setRate}
+					cryptoRate={cryptoRate}
+					stockRate={stockRate}
+					setCryptoRate={setCryptoRate}
+					setStockRate={setStockRate}
 					setStockData={setStockData}
 					setCryptoData={setCryptoData}
 					setPobrano={setPobrano}
@@ -82,6 +88,8 @@ const Main = () => {
 					cryptoName={cryptoName}
 					setStartDate={setStartDate}
 					setEndDate={setEndDate}
+					stockGain={stockGain}
+					cryptoGain={cryptoGain}
 				/>
 			</div>
 		</div>
