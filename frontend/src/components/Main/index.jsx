@@ -1,8 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import LineChart from "./LineChart";
-import { elements, layouts } from "chart.js";
-import DividedChart from "./DividedChart";
 import Nav from "./Nav";
 import styles from "./styles.module.css";
 
@@ -89,6 +87,9 @@ const Main = () => {
 		});
 		setShowCharts(true);
 	};
+	useEffect(() => {
+		chartDataDivider();
+	}, [cryptoData, stockData]);
 	function isBetween(splited, splitedStart, splitedEnd) {
 		if (
 			splited[0] >= splitedStart[0] &&
@@ -167,8 +168,17 @@ const Main = () => {
 			const config = {
 				method: "get",
 				url: "http://localhost:5000/api/download/" + fileType,
+				responseType: "blob",
 			};
 			const res = await axios(config);
+			const url = window.URL.createObjectURL(new Blob([res.data]));
+			const link = document.createElement("a");
+			link.href = url;
+			link.setAttribute("download", "data." + fileType);
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+			window.URL.revokeObjectURL(url);
 			console.log("File exported successfully!", res);
 		} catch (error) {
 			if (
