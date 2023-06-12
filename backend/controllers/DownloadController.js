@@ -4,15 +4,6 @@ const humanReadableParser = require("../parsers/humanReadableParser");
 const js2xmlparser = require("js2xmlparser");
 const fs = require("fs").promises;
 
-function printLast15Elements(array) {
-	const length = array.length;
-	const startIndex = length > 15 ? length - 15 : 0;
-
-	for (let i = startIndex; i < length; i++) {
-		console.log(array[i]);
-	}
-}
-
 const downloadJSON = async (cryptoName, stockName, startDate, endDate) => {
 	try {
 		var stock = await getStockData(stockName);

@@ -113,10 +113,8 @@ const CustomCharts = (props) => {
 		loading();
 	}, [cryptoData, stockData]);
 	useEffect(() => {
-		setCryptoGain(
-			((investment * cryptoRate) / 100 - investment).toFixed(2)
-		);
-		setStockGain(((investment * stockRate) / 100 - investment).toFixed(2));
+		setCryptoGain(((investment * cryptoRate) / 100).toFixed(2));
+		setStockGain(((investment * stockRate) / 100).toFixed(2));
 	});
 	return (
 		<div>
@@ -130,48 +128,79 @@ const CustomCharts = (props) => {
 					</button>
 				</div>
 			</div>
-			<div className={styles.row}>
+
+			<div>
 				{pobrano && showCharts ? (
 					<div>
-						<div style={{ width: 1200, height: 400 }}>
-							<LineChart chartData={chartData} />
+						<div>
+							<div
+								style={{
+									width: 800,
+									height: 400,
+									margin: "auto",
+								}}
+							>
+								<LineChart chartData={chartData} />
+							</div>
+						</div>
+						<div
+							className={styles.opt_container}
+							style={{ marginLeft: "15px" }}
+						>
+							<label htmlFor="investment">
+								Zainwestowana kwota (USD):{" "}
+							</label>
+							<input
+								className={styles.inputStyle_white}
+								type="number"
+								name="investment"
+								id="investment"
+								step="50"
+								min="0"
+								value={investment}
+								onChange={(e) =>
+									props.setInvestment(e.target.value)
+								}
+							/>
+						</div>
+						<div className={styles.row}>
+							<div className={styles.col_content}>
+								<label htmlFor="stockGain">
+									Zysk/strata z akcji:{" "}
+								</label>
+								<div className={styles.inputStyle_white}>
+									{stockGain}
+								</div>
+							</div>
+							<div className={styles.col_content}>
+								<label htmlFor="cryptoGain">
+									Zysk/strata z kryptowaluty:
+								</label>
+								<div className={styles.inputStyle_white}>
+									{cryptoGain}
+								</div>
+							</div>
+							<div className={styles.col_content}>
+								<label htmlFor="stockRate">
+									Stopa zwrotu dla akcji:{" "}
+								</label>
+								<div className={styles.inputStyle_white}>
+									{stockRate + "%"}
+								</div>
+							</div>
+							<div className={styles.col_content}>
+								<label htmlFor="cryptoRate">
+									Stopa zwrotu dla kryptowaluty:
+								</label>
+								<div className={styles.inputStyle_white}>
+									{cryptoRate + "%"}
+								</div>
+							</div>
 						</div>
 					</div>
 				) : (
 					""
 				)}
-				<div className={styles.col}>
-					<div className={styles.col_content}>
-						<label htmlFor="stockGain">Zysk/strata z akcji: </label>
-						<div className={styles.inputStyle_white}>
-							{stockGain}
-						</div>
-					</div>
-					<div className={styles.col_content}>
-						<label htmlFor="cryptoGain">
-							Zysk/strata z kryptowaluty:
-						</label>
-						<div className={styles.inputStyle_white}>
-							{cryptoGain}
-						</div>
-					</div>
-					<div className={styles.col_content}>
-						<label htmlFor="stockRate">
-							Stopa zwrotu dla akcji:{" "}
-						</label>
-						<div className={styles.inputStyle_white}>
-							{stockRate + "%"}
-						</div>
-					</div>
-					<div className={styles.col_content}>
-						<label htmlFor="cryptoRate">
-							Stopa zwrotu dla kryptowaluty:
-						</label>
-						<div className={styles.inputStyle_white}>
-							{cryptoRate + "%"}
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	);

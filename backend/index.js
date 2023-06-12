@@ -19,6 +19,7 @@ connection();
 app.get("/", (req, res) => {
 	res.send("Aplikacja dziala");
 });
+
 app.use("/api/auth", authUser);
 app.get("/api/user/", jwt_auth);
 app.delete("/api/user/", jwt_auth);

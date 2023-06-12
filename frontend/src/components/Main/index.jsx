@@ -10,10 +10,10 @@ const Main = () => {
 	const [stockRate, setStockRate] = useState("0");
 	const [stockData, setStockData] = useState([]);
 	const [cryptoData, setCryptoData] = useState([]);
-	const [cryptoName, setCryptoName] = useState("");
-	const [stockName, setStockName] = useState("");
-	const [startDate, setStartDate] = useState("");
-	const [endDate, setEndDate] = useState("");
+	const [cryptoName, setCryptoName] = useState("BITCOIN");
+	const [stockName, setStockName] = useState("NASDAQ100");
+	const [startDate, setStartDate] = useState("2018-01-01");
+	const [endDate, setEndDate] = useState("2023-01-01");
 	const [investment, setInvestment] = useState("");
 	const [pobrano, setPobrano] = useState(false);
 	const [showCharts, setShowCharts] = useState(false);
@@ -69,17 +69,19 @@ const Main = () => {
 					setCryptoRate={setCryptoRate}
 					setStockRate={setStockRate}
 				/>
-				<h2 className={styles.margin}>Zakres czasowy</h2>
+				<h2 className={styles.margin}>Opcje wykresu</h2>
 				<ChartOptions
 					setStartDate={setStartDate}
 					setEndDate={setEndDate}
-					setInvestment={setInvestment}
 					chosenOptions={chosenOptions}
 					setCryptoName={setCryptoName}
 					setStockName={setStockName}
-					investment={investment}
 					cryptoName={cryptoName}
 					stockName={stockName}
+					setCryptoData={setCryptoData}
+					setStockData={setStockData}
+					endDate={endDate}
+					startDate={startDate}
 				/>
 				<br />
 				<br />
@@ -107,6 +109,7 @@ const Main = () => {
 					cryptoGain={cryptoGain}
 					setCryptoGain={setCryptoGain}
 					setStockGain={setStockGain}
+					setInvestment={setInvestment}
 					investment={investment}
 				/>
 			</div>

@@ -9,11 +9,11 @@ router.get("/getData", async (req, res) => {
 		result = await generalController.getData(
 			"bitcoin",
 			"NASDAQ100",
-			"2013-04-29",
+			"2018-01-01",
 			"2023-01-01"
 		);
 		res.status(result.status).send({
-			startDate: "2013-04-29",
+			startDate: "2018-01-01",
 			endDate: "2023-01-01",
 			stock: { stockName: "NASDAQ100", prices: result.stock },
 			crypto: { cryptoName: "bitcoin", prices: result.crypto },
@@ -64,6 +64,13 @@ router.get("/getData", async (req, res) => {
 
 router.post("/getData", async (req, res) => {
 	try {
+		if (
+			req.body.cryptoName === "" ||
+			req.body.stockName === "" ||
+			req.body.startDate === "" ||
+			req.body.endDate === ""
+		)
+			return res.status(500).send({ message: "Internal Server Error" });
 		result = await generalController.getData(
 			req.body.cryptoName.toLowerCase(),
 			req.body.stockName.toUpperCase(),
@@ -72,7 +79,10 @@ router.post("/getData", async (req, res) => {
 		);
 		res.status(result.status).send({
 			stock: { stockName: req.body.stockName, prices: result.stock },
-			crypto: { cryptoName: req.body.cryptoName, prices: result.crypto },
+			crypto: {
+				cryptoName: req.body.cryptoName,
+				prices: result.crypto,
+			},
 			startDate: result.crypto[0][0],
 			endDate: result.crypto[result.crypto.length - 1][0],
 			cryptoRate: generalController.calculateReturnRate(
@@ -86,10 +96,15 @@ router.post("/getData", async (req, res) => {
 			message: result.message,
 		});
 	} catch (error) {
+		console.error(error);
 		try {
 			result = await dbController.getData(
-				req.body.stockName ?? "NASDAQ100",
-				req.body.cryptoName ?? "bitcoin"
+				req.body.stockName !== ""
+					? req.body.stockName.toUpperCase()
+					: "NASDAQ100",
+				req.body.cryptoName !== ""
+					? req.body.cryptoName.toLowerCase()
+					: "bitcoin"
 			);
 			res.status(result.status).send({
 				stock: {
@@ -97,7 +112,7 @@ router.post("/getData", async (req, res) => {
 					prices: result.stock.prices,
 				},
 				crypto: {
-					cryptoName: result.stock.cryptoName,
+					cryptoName: result.crypto.cryptoName,
 					prices: result.crypto.prices,
 				},
 				startDate: result.crypto.prices[0][0],
@@ -111,7 +126,7 @@ router.post("/getData", async (req, res) => {
 					result.stock.prices[0][1],
 					result.stock.prices[result.stock.prices.length - 1][1]
 				),
-				message: result.message,
+				message: result.message + " from database",
 			});
 		} catch (error) {
 			console.error(error);
@@ -119,7 +134,5 @@ router.post("/getData", async (req, res) => {
 		}
 	}
 });
-
-router.get("/rate_of_return", async (req, res) => {});
 
 module.exports = router;

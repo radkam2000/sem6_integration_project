@@ -9,7 +9,7 @@ function tokenVerification(req, res, next) {
 	jwt.verify(token, process.env.JWTPRIVATEKEY, (err, decodeduser) => {
 		if (err) {
 			console.log("Unauthorized!");
-			console.log(err);
+			console.error(err);
 			res.status(401).send({ message: "Unauthorized!" });
 		}
 		console.log("Token poprawny, użytkownik: " + decodeduser._id);

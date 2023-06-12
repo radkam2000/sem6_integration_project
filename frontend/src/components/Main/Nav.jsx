@@ -10,8 +10,6 @@ const Nav = () => {
 			<button className={styles.nav_link} onClick={handleLogout}>
 				Wyloguj się
 			</button>
-			<button className={styles.nav_link}>Zmień hasło</button>
-			<button className={styles.nav_link}>Sczegóły konta</button>
 		</div>
 	);
 };

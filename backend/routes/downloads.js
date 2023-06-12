@@ -21,7 +21,6 @@ router.post("/xml", async (req, res) => {
 
 router.post("/json", async (req, res) => {
 	try {
-		console.log(req.body);
 		result = await downloadController.downloadJSON(
 			req.body.cryptoName.toLowerCase(),
 			req.body.stockName.toUpperCase(),

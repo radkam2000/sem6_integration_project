@@ -117,6 +117,7 @@ label {
 	background: #e5e5e5;
 }
 .row {
+	margin-top: 10px;
 	padding: 0 15px;
 	display: flex;
 	justify-content: space-between;
