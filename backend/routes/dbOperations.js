@@ -76,7 +76,7 @@ router.post("/addNewData", async (req, res) => {
 			crypto.save();
 			await session.commitTransaction();
 			session.endSession();
-			return res.status(409).send({ message: "Data updated" });
+			return res.status(200).send({ message: "Database data updated" });
 		}
 
 		await new StockData({ ...st.stock }).save();
@@ -84,7 +84,7 @@ router.post("/addNewData", async (req, res) => {
 		await session.commitTransaction();
 		session.endSession();
 		console.log("database copy done");
-		res.status(201).send({ message: "Data added successfull" });
+		res.status(200).send({ message: "Data added successfull" });
 	} catch (error) {
 		await session.abortTransaction();
 		session.endSession();

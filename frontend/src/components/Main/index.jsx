@@ -4,6 +4,8 @@ import DataOptions from "./DataOptions";
 import ChartOptions from "./ChartOptions";
 import CustomCharts from "./CustomCharts";
 import styles from "./styles.module.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Main = () => {
 	const [cryptoRate, setCryptoRate] = useState("0");
@@ -51,6 +53,19 @@ const Main = () => {
 		setStockGain,
 	};
 
+	const toastConfig = {
+		position: "bottom-right",
+		autoClose: 3000,
+		hideProgressBar: false,
+		closeOnClick: true,
+		pauseOnHover: true,
+		draggable: true,
+		progress: undefined,
+		theme: "dark",
+	};
+
+	const notify = (message) => toast(message, toastConfig);
+
 	return (
 		<div className="App">
 			<Nav />
@@ -68,6 +83,7 @@ const Main = () => {
 					setEndDate={setEndDate}
 					setCryptoRate={setCryptoRate}
 					setStockRate={setStockRate}
+					notify={notify}
 				/>
 				<h2 className={styles.margin}>Opcje wykresu</h2>
 				<ChartOptions
@@ -111,8 +127,10 @@ const Main = () => {
 					setStockGain={setStockGain}
 					setInvestment={setInvestment}
 					investment={investment}
+					notify={notify}
 				/>
 			</div>
+			<ToastContainer />
 		</div>
 	);
 };

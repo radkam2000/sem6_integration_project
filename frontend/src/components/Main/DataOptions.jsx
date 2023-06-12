@@ -39,6 +39,7 @@ const DataOptions = (props) => {
 				setEndDate(res.endDate);
 				setCryptoRate(res.cryptoRate.toFixed(2));
 				setStockRate(res.stockRate.toFixed(2));
+				props.notify(res.message);
 				if (stockData !== [] && cryptoData !== []) setPobrano(true);
 			} catch (error) {
 				if (
@@ -71,6 +72,7 @@ const DataOptions = (props) => {
 				link.click();
 				document.body.removeChild(link);
 				window.URL.revokeObjectURL(url);
+				props.notify("Download started");
 			} catch (error) {
 				if (
 					error.response &&
@@ -101,15 +103,16 @@ const DataOptions = (props) => {
 					},
 					data: formData,
 				};
-				const res = await axios(config);
+				const { data: res } = await axios(config);
 				setCryptoName(res.crypto.cryptoName.toUpperCase());
-				setStockName(res.stock.stockName);
+				setStockName(res.stock.stockName.toUpperCase());
 				setStockData(res.stock.prices);
 				setCryptoData(res.crypto.prices);
 				setStartDate(res.startDate);
 				setEndDate(res.endDate);
 				setCryptoRate(res.cryptoRate.toFixed(2));
 				setStockRate(res.stockRate.toFixed(2));
+				props.notify(res.message);
 			} catch (error) {
 				if (
 					error.response &&
@@ -128,14 +131,16 @@ const DataOptions = (props) => {
 			if (extension === fileType) {
 				handleImport(file);
 			} else {
-				console.log(
-					"Invalid file type. Select " + { fileType } + "type file."
+				props.notify(
+					"Invalid file type. Select " + fileType + " file."
 				);
+				console.log("Invalid file type. Select " + fileType + " file.");
 			}
 		}
 	};
 	const saveToDB = async () => {
 		const token = localStorage.getItem("token");
+		props.notify("Database save copy started");
 		if (token) {
 			try {
 				const config = {
@@ -147,7 +152,8 @@ const DataOptions = (props) => {
 					},
 					data: chosenOptions,
 				};
-				const res = await axios(config);
+				const { data: res } = await axios(config);
+				props.notify(res.message);
 			} catch (error) {
 				if (
 					error.response &&

@@ -94,6 +94,7 @@ const CustomCharts = (props) => {
 				setEndDate(res.endDate);
 				setCryptoRate(res.cryptoRate.toFixed(2));
 				setStockRate(res.stockRate.toFixed(2));
+				props.notify(res.message);
 				if (stockData !== [] && cryptoData !== []) setPobrano(true);
 			} catch (error) {
 				if (
