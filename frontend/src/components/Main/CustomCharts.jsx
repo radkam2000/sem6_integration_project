@@ -167,7 +167,7 @@ const CustomCharts = (props) => {
 						<div className={styles.row}>
 							<div className={styles.col_content}>
 								<label htmlFor="stockGain">
-									Zysk/strata z akcji:{" "}
+									Zysk/strata z giełdy:{" "}
 								</label>
 								<div className={styles.inputStyle_white}>
 									{stockGain}
@@ -183,7 +183,7 @@ const CustomCharts = (props) => {
 							</div>
 							<div className={styles.col_content}>
 								<label htmlFor="stockRate">
-									Stopa zwrotu dla akcji:{" "}
+									Stopa zwrotu dla giełdy:{" "}
 								</label>
 								<div className={styles.inputStyle_white}>
 									{stockRate + "%"}
