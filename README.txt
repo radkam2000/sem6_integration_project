@@ -24,6 +24,8 @@ Uruchomienie projektu
     
     - (wymaga zainstalowanego Node.js, npm, opcjonalnie docker) W przypadku niepowodzenia urchomienia przy pomocy docker compose, należy wykonać z terminala polecenie "npm install" w katalogach frontend oraz backend, natomiast bazę można uruchomić za pomocą polecenia "docker run --name mongodb -p 27017:27017 mongo" oraz zmienić w pliku backend/.env zmienną na DB=mongodb://localhost/IS_project, jeżeli nie chcemy uruchamiać zdockeryzowanego MongoDB, należy w pliku backend/.env ustawić zmienną DB aby łączyła się z bazą urchomioną w inny sposób, ostatnim krokiem jest uruchomienie serwerów frontend i backend. Trzeba w każdym folderów uruchomić terminal i uruchomić serwery, backend: "npm start", frontend: "npm run start"
 
+Interakcja z aplikacją zachodzi w przeglądarce, pod adresem http://localhost:3000/
+
 Dane:
     Dane o kryptowalutach są pobierane z api CoinGecko https://www.coingecko.com/api/documentations/v3
     Dane o giełdzie są pobierane z api FRED ST. LOUIS FED https://fred.stlouisfed.org/docs/api/fred/

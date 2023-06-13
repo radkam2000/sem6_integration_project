@@ -2,7 +2,7 @@ const arrayParser = require("../parsers/toArrayParser");
 const fs = require("fs").promises;
 const convert = require("xml-js");
 
-const XMLupload = async () => {
+const getUploadXML = async () => {
 	try {
 		let fileData = await fs.readFile(
 			`${__dirname}/../uploads/data`,
@@ -33,7 +33,7 @@ const XMLupload = async () => {
 	}
 };
 
-const JSONupload = async () => {
+const getUploadJSON = async () => {
 	try {
 		fileData = await fs.readFile(`${__dirname}/../uploads/data`, "utf8");
 		fileData = JSON.parse(fileData);
@@ -52,4 +52,4 @@ const JSONupload = async () => {
 	}
 };
 
-module.exports = { XMLupload, JSONupload };
+module.exports = { getUploadJSON, getUploadXML };

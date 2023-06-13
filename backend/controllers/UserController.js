@@ -4,6 +4,7 @@ dbSingleton = require("../db");
 const mongoose = require("mongoose");
 const register = async (body) => {
 	const session = await mongoose.startSession();
+
 	try {
 		session.startTransaction();
 		const { error } = validate(body);

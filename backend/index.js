@@ -32,6 +32,14 @@ app.use("/api/data_db", dataDbRouter);
 app.use("/api/download", downloadRouter);
 app.use("/api/upload", uploadRouter);
 
+app.use((err, req, res, next) => {
+	if (err instanceof multer.MulterError) {
+		res.status(500).send({ message: "Upload file error occured" });
+	} else if (err) {
+		next(err);
+	}
+});
+
 app.listen(process.env.PORT, () => {
 	console.log(`Serwer nasłuchuje na porcie ${process.env.PORT}`);
 });

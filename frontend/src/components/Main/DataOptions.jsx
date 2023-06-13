@@ -52,6 +52,40 @@ const DataOptions = (props) => {
 			}
 		}
 	};
+
+	const handleGetImport = async () => {
+		const token = localStorage.getItem("token");
+		if (token) {
+			try {
+				const config = {
+					method: "get",
+					url:
+						"http://localhost:5000/api/general/getUploadData" +
+						fileType.toUpperCase(),
+					headers: { "x-access-token": token },
+				};
+				const { data: res } = await axios(config);
+				setCryptoName(res.crypto.cryptoName.toUpperCase());
+				setStockName(res.stock.stockName.toUpperCase());
+				setStockData(res.stock.prices);
+				setCryptoData(res.crypto.prices);
+				setStartDate(res.startDate);
+				setEndDate(res.endDate);
+				setCryptoRate(res.cryptoRate.toFixed(2));
+				setStockRate(res.stockRate.toFixed(2));
+				props.notify("Data fetched succesfully");
+			} catch (error) {
+				if (
+					error.response &&
+					error.response.status >= 400 &&
+					error.response.status <= 500
+				) {
+					props.notify("Error, couldn't get imported data");
+				}
+			}
+		}
+	};
+
 	const handleExport = async () => {
 		const token = localStorage.getItem("token");
 		if (token) {
@@ -203,6 +237,12 @@ const DataOptions = (props) => {
 						onClick={handleExport}
 					>
 						Eksportuj
+					</button>
+					<button
+						className={styles.optionStyle}
+						onClick={handleGetImport}
+					>
+						Pokaż
 					</button>
 				</p>
 				<p className={styles.opt_container}>
