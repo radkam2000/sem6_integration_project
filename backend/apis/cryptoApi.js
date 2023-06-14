@@ -10,6 +10,7 @@ const getCryptoData = async (cryptoName) => {
 		return await cryptoParser(json);
 	} catch (error) {
 		console.error(error);
+		throw error;
 	}
 };
 

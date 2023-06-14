@@ -20,7 +20,7 @@ const stockXML = (data) => {
 };
 
 const cryptoXML = (data) => {
-	const cryptoData = data.stock.prices.map((item) => [
+	const cryptoData = data.crypto.prices.map((item) => [
 		item.date._text,
 		item.price._text,
 	]);

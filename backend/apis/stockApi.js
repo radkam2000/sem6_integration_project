@@ -8,6 +8,7 @@ const getStockData = async (stockName) => {
 		return await stockParser(json);
 	} catch (error) {
 		console.error(error);
+		throw error;
 	}
 };
 
